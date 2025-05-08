@@ -9,10 +9,10 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5; /* Light mode background */
+            background-color: #f0f2f5; /* Cor de fundo do modo claro */
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /* Dark mode base styles */
+        /* Estilos base para o modo escuro */
         .dark body {
             background-color: #1f2937; /* Tailwind gray-800 */
             color: #d1d5db; /* Tailwind gray-300 */
@@ -46,9 +46,8 @@
         .dark .bg-purple-100 { background-color: #581c87; }
         .dark .text-purple-700 { color: #d8b4fe; }
         .dark .border-purple-300 { border-color: #c084fc; }
-        .dark .header-subtitle { color: #e5e7eb; } /* Tailwind gray-200 for subtitle in dark mode */
-        .dark .footer-text { color: #9ca3af; } /* Tailwind gray-400 for footer text in dark mode */
-
+        .dark .header-subtitle { color: #e5e7eb; } 
+        .dark .footer-text { color: #9ca3af; } 
 
         .card {
             background-color: #ffffff;
@@ -99,7 +98,6 @@
         .dark .btn-secondary:hover {
             background-color: #4f46e5; 
         }
-
 
         .progress-section-container {
             position: relative;
@@ -158,45 +156,33 @@
             fill: #4338ca;
         }
 
-        /* MODIFICADO: Estilo para o container de conteúdo quando não é iframe */
         .content-container {
             position: relative;
-            /* padding-bottom: 56.25%; */ /* Removido pois não será sempre vídeo/imagem */
-            min-height: 150px; /* Altura mínima para o botão e mensagem */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            overflow: hidden; 
+            max-width: 100%;
             background: #e2e8f0; 
             border-radius: 0.5rem;
+            min-height: 200px; 
         }
         .dark .content-container {
             background: #4b5563; 
         }
-        .content-container iframe, /* Mantido para o vídeo de introdução */
+        .content-container iframe,
         .content-container img {
-            position: absolute;
+            position: absolute; 
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: 0;
+            border-radius: 0.5rem; 
         }
-         /* Estilo para o botão de abrir aula e mensagem */
-        .content-container .btn-open-lesson {
-            margin-bottom: 0.75rem; /* 12px */
-            padding: 0.75rem 1.5rem; /* Equivalente a p-3 e px-6 */
+        .interactive-page-iframe {
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+            border-radius: 0.5rem;
         }
-        .content-container .lesson-open-instruction {
-            text-align: center;
-            font-size: 0.875rem; /* text-sm */
-            color: #4b5563; /* text-gray-600 */
-            padding: 0 1rem; /* Adiciona um pouco de padding lateral */
-        }
-        .dark .content-container .lesson-open-instruction {
-            color: #cbd5e1; /* text-gray-300 */
-        }
-
 
         .file-input-label {
             padding: 0.75rem 1.5rem;
@@ -243,32 +229,54 @@
             color: #9ca3af; 
         }
 
-        /* WhatsApp Button Styles */
+        /* Estilos do Botão WhatsApp */
         .whatsapp-container {
             position: fixed;
             bottom: 20px;
-            right: 20px; /* Movido para a direita */
+            right: 20px;
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; 
         }
-        .whatsapp-text {
-            background-color: rgba(0,0,0,0.7);
+        .whatsapp-callout {
+            background-color: #075E54; 
             color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem; /* 12px */
-            margin-bottom: 5px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.875rem; 
+            margin-bottom: 12px; 
             white-space: nowrap;
+            position: relative; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            opacity: 0; 
+            transform: translateY(10px); 
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none; 
         }
-        .dark .whatsapp-text {
-            background-color: rgba(255,255,255,0.7);
-            color: #1f2937;
+        .whatsapp-container:hover .whatsapp-callout { 
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .dark .whatsapp-callout {
+            background-color: #128C7E; 
+        }
+        .whatsapp-callout::after { 
+            content: "";
+            position: absolute;
+            top: 100%; 
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 7px;
+            border-style: solid;
+            border-color: #075E54 transparent transparent transparent; 
+        }
+        .dark .whatsapp-callout::after {
+            border-color: #128C7E transparent transparent transparent;
         }
 
         .whatsapp-fab {
-            background-color: #25D366;
+            background-color: #25D366; /* Cor verde do WhatsApp */
             color: white;
             width: 60px;
             height: 60px;
@@ -278,73 +286,34 @@
             justify-content: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, background-color 0.3s ease;
-            animation: whatsapp-pulse 2s infinite;
         }
         .whatsapp-fab:hover {
-            background-color: #1DAE52;
+            background-color: #1DAE52; /* Verde mais escuro no hover */
             transform: scale(1.1);
-            animation-play-state: paused; 
         }
         .whatsapp-fab svg {
-            width: 32px;
+            width: 32px; /* Ajuste o tamanho do SVG se necessário */
             height: 32px;
-            fill: white;
+            fill: white; /* Cor do ícone SVG */
         }
-
-        @keyframes whatsapp-pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
-        }
-
-        /* Theme Toggle and YouTube Button */
+       
         .header-actions button, .header-actions a {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 0.375rem; /* rounded-md */
-            transition: background-color 0.2s ease-in-out;
-            color: #4b5563; /* Default icon color for light mode */
+            background: none; border: none; cursor: pointer; padding: 0.5rem;
+            border-radius: 0.375rem; transition: background-color 0.2s ease-in-out;
+            color: #4b5563; 
         }
-        .dark .header-actions button, .dark .header-actions a {
-            color: #d1d5db; /* Default icon color for dark mode */
-        }
-
-        .header-actions button:hover, .header-actions a:hover {
-            background-color: rgba(0,0,0,0.1);
-        }
-        .dark .header-actions button:hover, .dark .header-actions a:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-        .header-actions svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
+        .dark .header-actions button, .dark .header-actions a { color: #d1d5db; }
+        .header-actions button:hover, .header-actions a:hover { background-color: rgba(0,0,0,0.1); }
+        .dark .header-actions button:hover, .dark .header-actions a:hover { background-color: rgba(255,255,255,0.1); }
+        .header-actions svg { width: 24px; height: 24px; fill: currentColor; }
         .dark .bg-gray-800 { background-color: #111827; } 
         .dark .text-white { color: #f3f4f6; } 
 
         .header-subtitle {
-            font-size: 0.875rem; /* 14px */
-            color: #4b5563; /* Tailwind gray-600 */
-            text-align: center; /* Centralizado em mobile */
+            font-size: 0.875rem; color: #4b5563; text-align: center; 
         }
-        @media (min-width: 640px) { /* sm breakpoint */
-            .header-subtitle {
-                text-align: left; /* Alinhado à esquerda em telas maiores */
-            }
-        }
-        .footer-text {
-            font-size: 0.875rem; /* 14px */
-            color: #6b7280; /* Tailwind gray-500 */
-        }
+        @media (min-width: 640px) { .header-subtitle { text-align: left; } }
+        .footer-text { font-size: 0.875rem; color: #6b7280; }
 
     </style>
 </head>
@@ -429,9 +398,10 @@
     </footer>
 
     <div class="whatsapp-container">
-        <span class="whatsapp-text">Tire suas dúvidas!</span>
+        <span class="whatsapp-callout">Tire suas dúvidas!</span>
         <a href="https://wa.me/5574988592119" class="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
-            <svg viewBox="0 0 32 32"> <path d=" M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.044-.53-.044a.765.765 0 0 0-.214.03c-.58.227-1.136.96-1.136 2.09 0 1.03.98 1.915 1.136 2.09 .19.282.39.575.973 1.214.504.537 1.38 1.186 2.16 1.757.673.49 1.273.78 1.848.945.545.152.973.12.973-.214 0-.215 0-.33-.014-.33-.014-.014-.33-.187-.82-.372zm-2.48 6.98c-3.58 0-6.5-2.92-6.5-6.5s2.92-6.5 6.5-6.5 6.5 2.92 6.5 6.5-2.92 6.5-6.5 6.5zm0-14c-4.14 0-7.5 3.36-7.5 7.5s3.36 7.5 7.5 7.5 7.5-3.36 7.5-7.5-3.36-7.5-7.5-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+            <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 2.672C8.64 2.672 2.672 8.64 2.672 16S8.64 29.328 16 29.328 29.328 23.36 29.328 16 23.36 2.672 16 2.672ZM22.336 18.856C22.032 19.728 21.072 20.304 20.184 20.448C19.536 20.568 18.6 20.52 17.904 20.232C17.208 19.944 15.144 19.056 13.08 17.208C10.608 14.928 9.096 12.336 8.904 11.976C8.712 11.616 7.944 10.344 7.944 9.288C7.944 8.232 8.4 7.752 8.688 7.488C8.952 7.248 9.312 7.152 9.6 7.152C9.768 7.152 9.912 7.152 10.032 7.176C10.296 7.2 10.488 7.248 10.68 7.608C10.896 8 11.352 9.072 11.448 9.24C11.544 9.408 11.616 9.6 11.52 9.816C11.424 10.032 11.328 10.128 11.16 10.32C11.016 10.488 10.872 10.656 10.752 10.776C10.632 10.92 10.512 11.088 10.656 11.328C10.8 11.568 11.304 12.312 12.072 13.008C13.104 13.944 13.944 14.496 14.328 14.712C14.64 14.88 14.88 14.856 15.072 14.64C15.288 14.4 15.48 14.064 15.672 13.8C15.888 13.512 16.152 13.464 16.416 13.56C16.68 13.632 17.736 14.16 18.096 14.328C18.48 14.52 18.72 14.592 18.816 14.712C18.912 14.832 18.912 15.12 18.816 15.336C18.744 15.528 18.24 16.032 17.88 16.44C17.52 16.824 17.256 17.112 17.256 17.4C17.256 17.688 17.544 17.952 17.856 18.216C18.168 18.48 18.96 18.888 19.344 19.008C19.728 19.128 20.256 19.44 20.544 19.44C20.832 19.44 21.072 19.272 21.792 18.408C21.888 18.288 22.336 18.856 22.336 18.856Z"/>
             </svg>
         </a>
     </div>
@@ -442,24 +412,15 @@
         const TOTAL_LEARNING_DAYS = 277; 
         const APP_STORAGE_KEY = 'linguaDiariaProgress';
         const THEME_STORAGE_KEY = 'linguaDiariaTheme';
-        const INTRO_VIDEO_ID = "dQw4w9WgXcQ"; 
+        const INTRO_VIDEO_ID = "dQw4w9WgXcQ"; // ID do vídeo de introdução do YouTube
 
-        // --- Array de Frases Motivacionais (mantido como antes) ---
+        // --- Array de Frases Motivacionais ---
         let dailyMotivationalQuotes = [];
         dailyMotivationalQuotes[1] = { day: 1, en: "The journey of a thousand miles begins with a single step.", pt: "A jornada de mil milhas começa com um único passo.", author: "Lao Tzu" };
         dailyMotivationalQuotes[2] = { day: 2, en: "Don't watch the clock; do what it does. Keep going.", pt: "Não observe o relógio; faça o que ele faz. Continue andando.", author: "Sam Levenson" };
-        dailyMotivationalQuotes[3] = { day: 3, en: "The only way to do great work is to love what you do.", pt: "A única maneira de fazer um ótimo trabalho é amar o que você faz.", author: "Steve Jobs" };
-        dailyMotivationalQuotes[4] = { day: 4, en: "Believe you can and you're halfway there.", pt: "Acredite que você pode e você já está no meio do caminho.", author: "Theodore Roosevelt" };
-        dailyMotivationalQuotes[5] = { day: 5, en: "Act as if what you do makes a difference. It does.", pt: "Aja como se o que você faz fizesse a diferença. Faz.", author: "William James" };
-        dailyMotivationalQuotes[6] = { day: 6, en: "Success is not final, failure is not fatal: It is the courage to continue that counts.", pt: "O sucesso não é final, o fracasso não é fatal: é a coragem de continuar que conta.", author: "Winston Churchill" };
-        dailyMotivationalQuotes[7] = { day: 7, en: "It always seems impossible until it's done.", pt: "Sempre parece impossível até que seja feito.", author: "Nelson Mandela" };
-        dailyMotivationalQuotes[8] = { day: 8, en: "The future belongs to those who believe in the beauty of their dreams.", pt: "O futuro pertence àqueles que acreditam na beleza de seus sonhos.", author: "Eleanor Roosevelt" };
-        dailyMotivationalQuotes[9] = { day: 9, en: "You are never too old to set another goal or to dream a new dream.", pt: "Você nunca é velho demais para definir outra meta ou sonhar um novo sonho.", author: "C.S. Lewis" };
-        dailyMotivationalQuotes[10] = { day: 10, en: "Strive for progress, not perfection.", pt: "Esforce-se para progredir, não para a perfeição.", author: "Unknown" };
-        // ... (restante das frases omitido para brevidade, mas deve ser incluído no arquivo real)
-        // Adicionando até a frase 277 como no original
-        for (let i = 11; i <= 277; i++) {
-            if (!dailyMotivationalQuotes[i]) { // Preenche apenas se não existir para não sobrescrever as já definidas
+        // Preenche as demais frases (até 277) para garantir que existam
+        for (let i = 3; i <= 277; i++) {
+            if (!dailyMotivationalQuotes[i]) { // Adiciona apenas se não existir para não sobrescrever
                 dailyMotivationalQuotes[i] = { 
                     day: i, 
                     en: `Motivational Quote for Day ${i} - Remember to add specific content.`, 
@@ -469,21 +430,26 @@
             }
         }
         
+        // --- Dados das Lições ---
         const lessonsData = [
+            // Lição de introdução
             { id: 'intro', type: 'intro', title: "Bem-vindo à Língua Diária!", videoId: INTRO_VIDEO_ID },
-            { id: 1, type: 'interactive_page', title: "Dia 1: Os Fundamentos Essenciais", pageUrl: "aulas/dia1.html", materialsLink: "aulas/materiais_dia1.pdf", materialsText: "Guia Rápido Dia 1 (PDF)" },
+            // Lições dos dias (sem links de materiais PDF)
+            { id: 1, type: 'interactive_page', title: "Dia 1: Os Fundamentos Essenciais", pageUrl: "aulas/dia1.html" }, 
             { id: 2, type: 'interactive_page', title: "Dia 2: Primeiras Conversas", pageUrl: "aulas/dia2.html" },
         ];
+        // Adiciona as demais lições programaticamente
         for (let i = 3; i <= TOTAL_LEARNING_DAYS; i++) {
             lessonsData.push({
                 id: i,
                 type: 'interactive_page',
                 title: `Dia ${i}: Tópico da Aula ${i}`, 
                 pageUrl: `aulas/dia${i}.html`, 
+                // Não há mais 'materialsLink' ou 'materialsText' aqui
             });
         }
 
-        // --- ELEMENTOS DO DOM ---
+        // --- ELEMENTOS DO DOM (Referências aos elementos HTML) ---
         const quoteTextEl = document.getElementById('quote-text');
         const quoteAuthorEl = document.getElementById('quote-author');
         const quoteTranslationEl = document.getElementById('quote-translation');
@@ -492,9 +458,9 @@
         const progressBarIconEl = document.getElementById('progress-bar-icon');
         const progressTextEl = document.getElementById('progress-text');
         const lessonTitleEl = document.getElementById('lesson-title');
-        const lessonContentEmbedEl = document.getElementById('lesson-content-embed');
-        const lessonMaterialsContainerEl = document.getElementById('lesson-materials-container');
-        const lessonMaterialsLinkEl = document.getElementById('lesson-materials-link');
+        const lessonContentEmbedEl = document.getElementById('lesson-content-embed'); // Div que contém o iframe/imagem da aula
+        const lessonMaterialsContainerEl = document.getElementById('lesson-materials-container'); // Container para materiais (agora não usado)
+        const lessonMaterialsLinkEl = document.getElementById('lesson-materials-link'); // Link para materiais (agora não usado)
         const completeLessonButton = document.getElementById('complete-lesson-button');
         const lessonMessageEl = document.getElementById('lesson-message');
         const courseCompletedMessageEl = document.getElementById('course-completed-message');
@@ -505,11 +471,10 @@
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-
-        // --- ESTADO DA APLICAÇÃO ---
-        let currentQuoteObject = null;
-        let translationVisible = false;
-        let userProgress = {
+        // --- ESTADO DA APLICAÇÃO (Variáveis globais) ---
+        let currentQuoteObject = null; // Objeto da citação atual
+        let translationVisible = false; // Controla visibilidade da tradução da citação
+        let userProgress = { // Progresso do usuário
             introCompleted: false,
             currentLearningDay: 1, 
             lastActivityDate: null 
@@ -517,39 +482,41 @@
 
         // --- FUNÇÕES ---
 
-        // Theme toggle
+        // Função para aplicar o tema (claro/escuro)
         function applyTheme(theme) {
             if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-                themeToggleDarkIcon.classList.remove('hidden');
-                themeToggleLightIcon.classList.add('hidden');  
+                document.documentElement.classList.add('dark'); // Adiciona classe 'dark' ao HTML
+                themeToggleDarkIcon.classList.remove('hidden'); // Mostra ícone de sol
+                themeToggleLightIcon.classList.add('hidden');  // Esconde ícone de lua
             } else {
-                document.documentElement.classList.remove('dark');
-                themeToggleDarkIcon.classList.add('hidden');   
-                themeToggleLightIcon.classList.remove('hidden');
+                document.documentElement.classList.remove('dark'); // Remove classe 'dark'
+                themeToggleDarkIcon.classList.add('hidden');    // Esconde ícone de sol
+                themeToggleLightIcon.classList.remove('hidden'); // Mostra ícone de lua
             }
         }
 
+        // Função para alternar o tema
         function toggleTheme() {
             const currentTheme = localStorage.getItem(THEME_STORAGE_KEY);
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            localStorage.setItem(THEME_STORAGE_KEY, newTheme);
+            localStorage.setItem(THEME_STORAGE_KEY, newTheme); // Salva preferência no localStorage
             applyTheme(newTheme);
         }
         
+        // Função para carregar o tema salvo ou preferência do sistema
         function loadTheme() {
             const preferredTheme = localStorage.getItem(THEME_STORAGE_KEY);
             if (preferredTheme) {
                 applyTheme(preferredTheme);
             } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                applyTheme('dark');
+                applyTheme('dark'); // Usa tema escuro se for preferência do sistema
             }
             else {
-                applyTheme('light'); 
+                applyTheme('light'); // Padrão para tema claro
             }
         }
 
-
+        // Função para exibir a citação motivacional diária
         function displayDailyQuote() {
             let quoteToDisplay;
             if (!userProgress.introCompleted) {
@@ -562,6 +529,7 @@
                        dailyMotivationalQuotes[userProgress.currentLearningDay].en) {
                 quoteToDisplay = dailyMotivationalQuotes[userProgress.currentLearningDay];
             } else {
+                // Fallback se a citação não for encontrada
                 console.warn(`Quote for day ${userProgress.currentLearningDay} not found. Using placeholder.`);
                 quoteToDisplay = {
                     en: `English Quote for Day ${userProgress.currentLearningDay} - (Content missing)`,
@@ -578,22 +546,25 @@
                 quoteAuthorEl.classList.add('hidden');
             }
             quoteTranslationEl.textContent = currentQuoteObject.pt;
-            quoteTranslationEl.classList.add('hidden');
+            quoteTranslationEl.classList.add('hidden'); // Tradução começa escondida
             translateButton.textContent = 'Mostrar Tradução';
             translationVisible = false;
         }
 
+        // Função para mostrar/ocultar a tradução da citação
         function toggleTranslation() {
             translationVisible = !translationVisible;
             quoteTranslationEl.classList.toggle('hidden', !translationVisible);
             translateButton.textContent = translationVisible ? 'Ocultar Tradução' : 'Mostrar Tradução';
         }
 
+        // Função para carregar o progresso do usuário do localStorage
         function loadProgress() {
             const savedProgress = localStorage.getItem(APP_STORAGE_KEY);
             if (savedProgress) {
                 try {
                     const parsedProgress = JSON.parse(savedProgress);
+                    // Validação básica dos dados carregados
                     if (typeof parsedProgress.introCompleted === 'boolean' &&
                         typeof parsedProgress.currentLearningDay === 'number' &&
                         parsedProgress.currentLearningDay >= 1 &&
@@ -602,19 +573,21 @@
                         userProgress = parsedProgress;
                     } else {
                         console.warn("Progresso salvo inválido. Usando padrão.");
-                        saveProgress(); // Salva o progresso padrão se o salvo for inválido
+                        saveProgress(); // Salva o progresso padrão se o carregado for inválido
                     }
                 } catch (error) {
                     console.error("Erro ao carregar progresso:", error);
-                    // Não redefine o progresso aqui, mantém o padrão inicializado
+                    // Mantém o progresso padrão inicializado em caso de erro
                 }
             }
         }
 
+        // Função para salvar o progresso do usuário no localStorage
         function saveProgress() {
             localStorage.setItem(APP_STORAGE_KEY, JSON.stringify(userProgress));
         }
 
+        // Função para atualizar a barra de progresso
         function updateProgressBar() {
             let daysEffectivelyCompleted = 0;
             if (userProgress.introCompleted) {
@@ -623,111 +596,129 @@
             const percentage = userProgress.introCompleted ? Math.min(100, (daysEffectivelyCompleted / TOTAL_LEARNING_DAYS) * 100) : 0;
             progressBarFillEl.style.width = `${percentage}%`;
             progressBarFillEl.textContent = `${Math.floor(percentage)}%`;
+            
+            // Ajusta a posição do ícone na barra de progresso
             let iconLeftPercentage;
-            if (percentage >= 97) { // Ajuste para o ícone não sair da barra no final
+            if (percentage >= 97) { // Evita que o ícone saia da barra no final
                 iconLeftPercentage = `calc(100% - 28px)`; 
-            } else if (percentage < 3 && percentage > 0) { // Ajuste para o ícone não sair da barra no início
+            } else if (percentage < 3 && percentage > 0) { // Evita que o ícone saia da barra no início
                  iconLeftPercentage = `0%`;
             } else {
                 iconLeftPercentage = `${percentage}%`;
             }
             progressBarIconEl.style.left = iconLeftPercentage;
 
+            // Atualiza o texto da barra de progresso
             if (!userProgress.introCompleted) {
                 progressTextEl.textContent = "Complete a introdução para iniciar sua jornada!";
             } else if (daysEffectivelyCompleted >= TOTAL_LEARNING_DAYS) {
                 progressTextEl.textContent = `Parabéns! Você concluiu todos os ${TOTAL_LEARNING_DAYS} dias de aprendizado!`;
-                progressBarIconEl.style.left = `calc(100% - 28px)`; // Garante que o ícone fique no final
+                progressBarIconEl.style.left = `calc(100% - 28px)`; // Garante ícone no final
             } else {
                 progressTextEl.textContent = `Dia ${daysEffectivelyCompleted} de ${TOTAL_LEARNING_DAYS} concluídos. Próxima aula: Dia ${userProgress.currentLearningDay}.`;
             }
         }
         
+        // Função para obter a data atual no formato YYYY-MM-DD
         function getTodayDateString() {
             const today = new Date();
             return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
         }
 
+        // Função para carregar o conteúdo da lição na UI
         function loadLessonContentUI(lesson) {
             lessonTitleEl.textContent = lesson.title;
-            lessonContentEmbedEl.innerHTML = ''; // Limpa o conteúdo anterior
-            
-            // Garante que o container de vídeo/imagem tenha padding-bottom apenas para iframe/img
-            lessonContentEmbedEl.style.paddingBottom = ''; 
+            lessonContentEmbedEl.innerHTML = ''; // Limpa conteúdo anterior
+
+            // Reseta estilos do container para cada tipo de conteúdo
+            lessonContentEmbedEl.style.paddingBottom = '';
+            lessonContentEmbedEl.style.height = '';
+            lessonContentEmbedEl.style.overflow = 'hidden'; 
 
             if (lesson.type === 'intro') {
-                lessonContentEmbedEl.style.paddingBottom = '56.25%'; // Restaura para aspect ratio de vídeo
+                // Estilo para vídeo de introdução (mantém aspect ratio 16:9)
+                lessonContentEmbedEl.style.paddingBottom = '56.25%'; 
+                lessonContentEmbedEl.style.height = '0'; 
+
                 if (lesson.videoId && lesson.videoId !== "your_youtube_intro_video_id" && !lesson.videoId.startsWith("placeholder")) {
-                    lessonContentEmbedEl.innerHTML = `<iframe src="https://www.youtube.com/embed/$${lesson.videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="${lesson.title}"></iframe>`;
+                    lessonContentEmbedEl.innerHTML = `<iframe src="https://www.youtube.com/watch?v=1_eKyE_mHrg&pp=0gcJCdgAo7VqN5tD{lesson.videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="${lesson.title}"></iframe>`;
                 } else {
+                    // Placeholder se o ID do vídeo não estiver configurado
                     lessonContentEmbedEl.innerHTML = `<img src="https://placehold.co/1600x900/e2e8f0/64748b?text=Configure+o+V%C3%ADdeo+de+Introdu%C3%A7%C3%A3o" alt="Vídeo de introdução" class="w-full h-full object-cover rounded-md">`;
                 }
             } else if (lesson.type === 'interactive_page') {
+                // Estilo para página interativa (iframe expandido)
+                lessonContentEmbedEl.style.height = '75vh'; // Define altura para "expandir"
+
                 if (lesson.pageUrl) {
                     const pageUrlWithCacheBuster = IS_DEVELOPMENT_MODE ? `${lesson.pageUrl}?t=${new Date().getTime()}` : lesson.pageUrl;
-                    // MODIFICAÇÃO PRINCIPAL AQUI: Cria um botão para abrir em nova aba
-                    lessonContentEmbedEl.innerHTML = `
-                        <a href="${pageUrlWithCacheBuster}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-open-lesson">
-                            Abrir ${lesson.title}
-                        </a>
-                        <p class="lesson-open-instruction">
-                            Clique no botão acima para acessar a aula em uma nova aba. 
-                            Após concluí-la, retorne a esta página para marcar como concluída.
-                        </p>`;
+                    lessonContentEmbedEl.innerHTML = `<iframe src="${pageUrlWithCacheBuster}" title="${lesson.title}" class="interactive-page-iframe"></iframe>`;
                 } else {
+                    // Mensagem se a URL da página da aula não estiver configurada
                     lessonContentEmbedEl.innerHTML = `<p class="p-4 text-center">Conteúdo da página interativa não configurado (pageUrl ausente para o dia ${lesson.id}).</p>`;
+                    lessonContentEmbedEl.style.height = 'auto'; // Altura automática para mensagem de erro
                 }
             }
 
-            // Gerenciamento de materiais adicionais
+            // Gerenciamento de materiais adicionais (agora sempre esconde, pois foram removidos dos dados)
             if (lesson.materialsLink && lesson.materialsText) {
                 lessonMaterialsLinkEl.href = lesson.materialsLink;
                 lessonMaterialsLinkEl.textContent = lesson.materialsText;
                 lessonMaterialsContainerEl.classList.remove('hidden');
             } else {
-                lessonMaterialsContainerEl.classList.add('hidden');
+                lessonMaterialsContainerEl.classList.add('hidden'); // Garante que está escondido
             }
         }
 
+        // Função para gerenciar a exibição da lição atual e controles
         function manageLessonDisplayAndControls() {
-            lessonMessageEl.classList.add('hidden');
+            lessonMessageEl.classList.add('hidden'); // Esconde mensagens anteriores
             lessonMessageEl.textContent = '';
-            courseCompletedMessageEl.classList.add('hidden');
-            completeLessonButton.classList.remove('hidden');
-            completeLessonButton.disabled = false; 
+            courseCompletedMessageEl.classList.add('hidden'); // Esconde mensagem de curso completo
+            completeLessonButton.classList.remove('hidden'); // Mostra botão de completar
+            completeLessonButton.disabled = false; // Habilita botão
+            
             let currentLessonToShow;
             let lessonIdentifier; 
 
             if (!userProgress.introCompleted) {
+                // Se a introdução não foi completada, mostra a introdução
                 currentLessonToShow = lessonsData.find(l => l.id === 'intro');
                 lessonIdentifier = 'intro';
                 completeLessonButton.textContent = "Concluir Introdução";
             } else {
+                // Se a introdução foi completada
                 if (userProgress.currentLearningDay > TOTAL_LEARNING_DAYS) {
+                    // Se todas as aulas foram completadas
                     lessonTitleEl.textContent = "Jornada Concluída!";
                     lessonContentEmbedEl.innerHTML = '<div class="p-4 text-center"><p class="text-lg text-green-600 dark:text-green-400">Fantástico! Você dominou todos os dias de aprendizado!</p><p class="mt-2 text-gray-700 dark:text-gray-300">Continue praticando para solidificar seu conhecimento.</p></div>';
-                    lessonContentEmbedEl.style.paddingBottom = ''; // Remove padding se não for vídeo
+                    lessonContentEmbedEl.style.paddingBottom = '0'; 
+                    lessonContentEmbedEl.style.height = 'auto'; 
                     lessonMaterialsContainerEl.classList.add('hidden');
-                    completeLessonButton.classList.add('hidden');
-                    courseCompletedMessageEl.classList.remove('hidden');
+                    completeLessonButton.classList.add('hidden'); // Esconde botão de completar
+                    courseCompletedMessageEl.classList.remove('hidden'); // Mostra mensagem de curso completo
                     updateProgressBar();
                     return;
                 }
+                // Mostra a aula do dia atual
                 currentLessonToShow = lessonsData.find(l => l.id === userProgress.currentLearningDay && l.type === 'interactive_page');
                 lessonIdentifier = userProgress.currentLearningDay;
                 completeLessonButton.textContent = `Marcar Dia ${userProgress.currentLearningDay} como Concluído`;
             }
 
             if (!currentLessonToShow) {
+                // Se a aula não for encontrada (erro de configuração)
                 lessonTitleEl.textContent = "Erro de Aula";
                 lessonContentEmbedEl.innerHTML = `<p class='p-4 text-center text-red-600 dark:text-red-400'>Oops! Aula para '${lessonIdentifier}' não encontrada. Por favor, verifique.</p>`;
-                lessonContentEmbedEl.style.paddingBottom = ''; // Remove padding se não for vídeo
+                lessonContentEmbedEl.style.paddingBottom = '0';
+                lessonContentEmbedEl.style.height = 'auto'; 
                 completeLessonButton.classList.add('hidden');
                 return;
             }
 
-            loadLessonContentUI(currentLessonToShow); // Carrega o conteúdo (botão ou iframe)
+            loadLessonContentUI(currentLessonToShow); // Carrega o conteúdo da aula
 
+            // Verifica se a atividade do dia já foi completada (exceto em modo de desenvolvimento)
             const todayStr = getTodayDateString();
             if (userProgress.lastActivityDate === todayStr && !IS_DEVELOPMENT_MODE) {
                 let message = "";
@@ -742,19 +733,23 @@
                     lessonMessageEl.textContent = message;
                     lessonMessageEl.className = 'mb-4 p-3 bg-blue-100 text-blue-700 border border-blue-300 rounded-md text-sm sm:text-base dark:bg-blue-800 dark:text-blue-200 dark:border-blue-600';
                     lessonMessageEl.classList.remove('hidden');
-                    completeLessonButton.disabled = true;
+                    completeLessonButton.disabled = true; // Desabilita botão
                     completeLessonButton.textContent = "Volte Amanhã";
                 }
             } else if (IS_DEVELOPMENT_MODE && userProgress.lastActivityDate === todayStr) {
+                // Mensagem para modo de desenvolvimento
                 lessonMessageEl.textContent = `(Modo de Teste) Atividade diária já registrada para ${todayStr}, mas você pode continuar.`;
                 lessonMessageEl.className = 'mb-4 p-3 bg-purple-100 text-purple-700 border border-purple-300 rounded-md text-sm sm:text-base dark:bg-purple-800 dark:text-purple-200 dark:border-purple-600';
                 lessonMessageEl.classList.remove('hidden');
             }
         }
 
+        // Função para lidar com a conclusão de uma lição
         function handleCompleteLesson() {
             const todayStr = getTodayDateString();
-            lessonMessageEl.className = 'mb-4 p-3 border rounded-md text-sm sm:text-base hidden'; 
+            lessonMessageEl.className = 'mb-4 p-3 border rounded-md text-sm sm:text-base hidden'; // Reseta classes da mensagem
+            
+            // Impede completar mais de uma atividade por dia (exceto em modo de desenvolvimento)
             if (userProgress.lastActivityDate === todayStr && !IS_DEVELOPMENT_MODE) {
                 lessonMessageEl.textContent = `Você só pode completar uma atividade por dia. Volte amanhã!`;
                 lessonMessageEl.classList.add('bg-yellow-100', 'text-yellow-700', 'border-yellow-300', 'dark:bg-yellow-700', 'dark:text-yellow-200', 'dark:border-yellow-500');
@@ -762,8 +757,10 @@
                 completeLessonButton.disabled = true;
                 return;
             }
+
             let messageAfterCompletion = "";
             if (!userProgress.introCompleted) {
+                // Completa a introdução
                 userProgress.introCompleted = true;
                 messageAfterCompletion = `Introdução concluída!`;
                 if (IS_DEVELOPMENT_MODE) {
@@ -772,10 +769,13 @@
                     messageAfterCompletion += ` Você está pronto para começar o Dia 1.`;
                 }
             } else { 
+                // Completa uma aula regular
                 if (userProgress.currentLearningDay <= TOTAL_LEARNING_DAYS) {
                     const dayJustCompleted = userProgress.currentLearningDay;
-                    userProgress.currentLearningDay += 1; 
+                    userProgress.currentLearningDay += 1; // Avança para o próximo dia
+                    
                     if (dayJustCompleted >= TOTAL_LEARNING_DAYS) { 
+                        // Se completou a última aula
                         messageAfterCompletion = `Parabéns! Dia ${dayJustCompleted} concluído. Você finalizou todas as aulas de aprendizado!`;
                     } else { 
                         messageAfterCompletion = `Dia ${dayJustCompleted} concluído!`;
@@ -787,46 +787,55 @@
                     }
                 }
             }
+
+            // Exibe mensagem de conclusão
             if (messageAfterCompletion) {
                 lessonMessageEl.textContent = messageAfterCompletion;
                 lessonMessageEl.classList.add('bg-green-100', 'text-green-700', 'border-green-300', 'dark:bg-green-800', 'dark:text-green-200', 'dark:border-green-600');
                 lessonMessageEl.classList.remove('hidden');
             }
-            userProgress.lastActivityDate = todayStr; 
-            saveProgress();
-            displayDailyQuote(); 
-            updateProgressBar(); 
-            manageLessonDisplayAndControls(); 
+
+            userProgress.lastActivityDate = todayStr; // Registra a data da atividade
+            saveProgress(); // Salva o progresso
+            displayDailyQuote(); // Atualiza a citação
+            updateProgressBar(); // Atualiza a barra de progresso
+            manageLessonDisplayAndControls(); // Atualiza a exibição da lição
         }
 
+        // Função para exportar o progresso como JSON
         function exportProgress() {
-            const progressJson = JSON.stringify(userProgress, null, 2);
+            const progressJson = JSON.stringify(userProgress, null, 2); // Formata o JSON para leitura
             const blob = new Blob([progressJson], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'lingua_diaria_progresso.json';
+            a.download = 'lingua_diaria_progresso.json'; // Nome do arquivo
             document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+            a.click(); // Simula o clique para download
+            document.body.removeChild(a); // Remove o elemento 'a'
+            URL.revokeObjectURL(url); // Libera o objeto URL
+
+            // Mensagem de sucesso
             lessonMessageEl.textContent = "Seu progresso foi exportado como 'lingua_diaria_progresso.json'. Guarde este arquivo!";
             lessonMessageEl.className = 'mb-4 p-3 bg-green-100 text-green-700 border border-green-300 rounded-md text-sm sm:text-base dark:bg-green-800 dark:text-green-200 dark:border-green-600';
             lessonMessageEl.classList.remove('hidden');
         }
 
+        // Função para importar o progresso de um arquivo JSON
         function importProgress(event) {
             const file = event.target.files[0];
-            lessonMessageEl.className = 'mb-4 p-3 border rounded-md text-sm sm:text-base hidden';
+            lessonMessageEl.className = 'mb-4 p-3 border rounded-md text-sm sm:text-base hidden'; // Reseta mensagem
             if (!file) return;
+
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
                     const importedProgress = JSON.parse(e.target.result);
+                    // Validação básica do progresso importado
                     if (typeof importedProgress.introCompleted === 'boolean' &&
                         typeof importedProgress.currentLearningDay === 'number' &&
                         importedProgress.currentLearningDay >= 1 &&
-                        importedProgress.currentLearningDay <= (TOTAL_LEARNING_DAYS + 1) && // Permite importar progresso até o dia após o total (concluído)
+                        importedProgress.currentLearningDay <= (TOTAL_LEARNING_DAYS + 1) && // Permite importar até o estado "concluído"
                         (importedProgress.lastActivityDate === null || (typeof importedProgress.lastActivityDate === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(importedProgress.lastActivityDate)))
                        ) {
                         userProgress = importedProgress;
@@ -846,31 +855,37 @@
                     lessonMessageEl.classList.add('bg-red-100', 'text-red-700', 'border-red-300', 'dark:bg-red-800', 'dark:text-red-200', 'dark:border-red-600');
                 } finally {
                     lessonMessageEl.classList.remove('hidden');
-                    importProgressInput.value = ""; 
+                    importProgressInput.value = ""; // Limpa o input de arquivo
                 }
             };
-            reader.readAsText(file);
+            reader.readAsText(file); // Lê o arquivo como texto
         }
 
+        // Função de inicialização da aplicação
         function initApp() {
-            currentYearEl.textContent = new Date().getFullYear();
+            currentYearEl.textContent = new Date().getFullYear(); // Define o ano atual no rodapé
             
-            loadTheme(); 
-            themeToggleButton.addEventListener('click', toggleTheme);
+            loadTheme(); // Carrega o tema
+            themeToggleButton.addEventListener('click', toggleTheme); // Adiciona evento ao botão de tema
 
-            translateButton.addEventListener('click', toggleTranslation);
-            loadProgress(); 
-            displayDailyQuote(); 
-            updateProgressBar(); 
-            manageLessonDisplayAndControls();
+            translateButton.addEventListener('click', toggleTranslation); // Adiciona evento ao botão de tradução
+            
+            loadProgress(); // Carrega o progresso do usuário
+            displayDailyQuote(); // Exibe a citação do dia
+            updateProgressBar(); // Atualiza a barra de progresso
+            manageLessonDisplayAndControls(); // Gerencia a exibição da lição atual
+
+            // Adiciona eventos aos botões de completar, exportar e importar
             completeLessonButton.addEventListener('click', handleCompleteLesson);
             exportProgressButton.addEventListener('click', exportProgress);
             importProgressInput.addEventListener('change', importProgress);
+
             if (IS_DEVELOPMENT_MODE) {
                 console.log("Língua Diária rodando em MODO DE DESENVOLVIMENTO.");
             }
         }
 
+        // Inicializa a aplicação quando o DOM estiver carregado
         document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
