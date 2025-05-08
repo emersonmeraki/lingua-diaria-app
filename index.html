@@ -9,17 +9,16 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5; /* Cor de fundo do modo claro */
+            background-color: #f0f2f5;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /* Estilos base para o modo escuro */
         .dark body {
-            background-color: #1f2937; /* Tailwind gray-800 */
-            color: #d1d5db; /* Tailwind gray-300 */
+            background-color: #1f2937;
+            color: #d1d5db;
         }
         .dark .card {
-            background-color: #374151; /* Tailwind gray-700 */
-            border-color: #4b5563; /* Tailwind gray-600 */
+            background-color: #374151;
+            border-color: #4b5563;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
         }
         .dark .text-gray-800 { color: #d1d5db; } 
@@ -66,7 +65,7 @@
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
             font-weight: 600;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
             cursor: pointer;
             text-align: center;
         }
@@ -77,27 +76,31 @@
         .btn-primary:hover {
             background-color: #4338ca; 
         }
-        .btn-primary:disabled {
+        .btn:disabled { /* Estilo geral para botões desabilitados */
             background-color: #a5b4fc; 
+            color: #e0e7ff;
             cursor: not-allowed;
+            opacity: 0.7;
         }
-        .dark .btn-primary:disabled {
+        .dark .btn:disabled {
             background-color: #6b7280; 
+            color: #9ca3af;
         }
         .btn-secondary {
             background-color: #e0e7ff; 
             color: #3730a3; 
         }
-        .btn-secondary:hover {
+        .btn-secondary:hover:not(:disabled) { /* Hover apenas se não estiver desabilitado */
             background-color: #c7d2fe; 
         }
         .dark .btn-secondary {
             background-color: #4338ca; 
             color: #e0e7ff; 
         }
-        .dark .btn-secondary:hover {
+        .dark .btn-secondary:hover:not(:disabled) {
             background-color: #4f46e5; 
         }
+
 
         .progress-section-container {
             position: relative;
@@ -156,19 +159,23 @@
             fill: #4338ca;
         }
 
+        /* Container para o conteúdo da lição (vídeo de intro ou botão para abrir aula) */
         .content-container {
             position: relative;
             overflow: hidden; 
             max-width: 100%;
             background: #e2e8f0; 
             border-radius: 0.5rem;
-            min-height: 200px; 
+            min-height: 150px; /* Altura mínima para botão/placeholder */
+            display: flex; /* Para centralizar o botão "Abrir Aula" */
+            align-items: center;
+            justify-content: center;
         }
         .dark .content-container {
             background: #4b5563; 
         }
-        .content-container iframe,
-        .content-container img {
+        .content-container iframe, /* Para vídeo de introdução */
+        .content-container img { /* Para placeholder de carregamento */
             position: absolute; 
             top: 0;
             left: 0;
@@ -177,12 +184,32 @@
             border: 0;
             border-radius: 0.5rem; 
         }
-        .interactive-page-iframe {
-            width: 100%; 
-            height: 100%; 
-            border: none; 
-            border-radius: 0.5rem;
+        /* Botão para abrir a aula no modal */
+        #open-lesson-in-modal-button {
+            padding: 0.75rem 2rem;
         }
+
+        /* Modal para Tela Cheia da Aula */
+        #lesson-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        #lesson-modal.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #lesson-modal-content-wrapper {
+            width: 100%;
+            height: 100%;
+            max-width: 100vw; /* Garante que não exceda a largura da viewport */
+            max-height: 100vh; /* Garante que não exceda a altura da viewport */
+        }
+        #modal-lesson-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0.375rem; /* rounded-md */
+        }
+
 
         .file-input-label {
             padding: 0.75rem 1.5rem;
@@ -206,7 +233,7 @@
         #import-progress-input {
             display: none;
         }
-        .action-buttons-container {
+        .action-buttons-container { /* Container para botões Exportar/Importar */
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
@@ -219,6 +246,16 @@
                 gap: 0.75rem;
             }
         }
+        /* Container para botões de controle da lição (Anterior, Concluir) */
+        .lesson-controls-container {
+            display: flex;
+            flex-wrap: wrap; /* Permite que os botões quebrem linha em telas menores */
+            justify-content: center;
+            gap: 0.5rem; /* Espaçamento entre botões */
+            margin-top: 1rem; /* Espaço acima dos botões de controle */
+        }
+
+
         .quote-author {
             font-size: 0.875rem; 
             color: #4b5563; 
@@ -229,7 +266,6 @@
             color: #9ca3af; 
         }
 
-        /* Estilos do Botão WhatsApp */
         .whatsapp-container {
             position: fixed;
             bottom: 20px;
@@ -276,7 +312,7 @@
         }
 
         .whatsapp-fab {
-            background-color: #25D366; /* Cor verde do WhatsApp */
+            background-color: #25D366;
             color: white;
             width: 60px;
             height: 60px;
@@ -288,13 +324,13 @@
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
         .whatsapp-fab:hover {
-            background-color: #1DAE52; /* Verde mais escuro no hover */
+            background-color: #1DAE52;
             transform: scale(1.1);
         }
         .whatsapp-fab svg {
-            width: 32px; /* Ajuste o tamanho do SVG se necessário */
+            width: 32px;
             height: 32px;
-            fill: white; /* Cor do ícone SVG */
+            fill: white;
         }
        
         .header-actions button, .header-actions a {
@@ -387,7 +423,10 @@
 
             <div id="lesson-message" class="mb-4 p-3 rounded-md hidden text-sm sm:text-base"></div>
             
-            <button id="complete-lesson-button" class="btn btn-primary w-full sm:w-auto">Marcar como Concluída</button>
+            <div class="lesson-controls-container">
+                <button id="previous-lesson-button" class="btn btn-secondary w-full sm:w-auto">Aula Anterior</button>
+                <button id="complete-lesson-button" class="btn btn-primary w-full sm:w-auto">Marcar como Concluída</button>
+            </div>
             <p id="course-completed-message" class="mt-4 text-green-600 font-semibold hidden">Parabéns! Você concluiu todas as aulas de aprendizado!</p>
         </main>
     </div>
@@ -397,11 +436,25 @@
         <p class="footer-text mt-2">Seu aprendizado é nossa maior inspiração. Continue firme!</p>
     </footer>
 
+    <div id="lesson-modal" class="fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center p-2 sm:p-4 z-[100] hidden">
+        <div id="lesson-modal-content-wrapper" class="bg-white dark:bg-gray-800 p-3 sm:p-5 rounded-lg shadow-xl w-full h-full flex flex-col">
+            <div class="flex justify-between items-center mb-3 sm:mb-4">
+                <h3 id="modal-lesson-title" class="text-lg sm:text-xl font-bold text-indigo-700 dark:text-indigo-400 truncate pr-2"></h3>
+                <button id="close-lesson-modal" aria-label="Fechar aula" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="modal-lesson-content" class="flex-grow h-0 overflow-y-auto">
+                </div>
+        </div>
+    </div>
+
+
     <div class="whatsapp-container">
         <span class="whatsapp-callout">Tire suas dúvidas!</span>
         <a href="https://wa.me/5574988592119" class="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
-            <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 2.672C8.64 2.672 2.672 8.64 2.672 16S8.64 29.328 16 29.328 29.328 23.36 29.328 16 23.36 2.672 16 2.672ZM22.336 18.856C22.032 19.728 21.072 20.304 20.184 20.448C19.536 20.568 18.6 20.52 17.904 20.232C17.208 19.944 15.144 19.056 13.08 17.208C10.608 14.928 9.096 12.336 8.904 11.976C8.712 11.616 7.944 10.344 7.944 9.288C7.944 8.232 8.4 7.752 8.688 7.488C8.952 7.248 9.312 7.152 9.6 7.152C9.768 7.152 9.912 7.152 10.032 7.176C10.296 7.2 10.488 7.248 10.68 7.608C10.896 8 11.352 9.072 11.448 9.24C11.544 9.408 11.616 9.6 11.52 9.816C11.424 10.032 11.328 10.128 11.16 10.32C11.016 10.488 10.872 10.656 10.752 10.776C10.632 10.92 10.512 11.088 10.656 11.328C10.8 11.568 11.304 12.312 12.072 13.008C13.104 13.944 13.944 14.496 14.328 14.712C14.64 14.88 14.88 14.856 15.072 14.64C15.288 14.4 15.48 14.064 15.672 13.8C15.888 13.512 16.152 13.464 16.416 13.56C16.68 13.632 17.736 14.16 18.096 14.328C18.48 14.52 18.72 14.592 18.816 14.712C18.912 14.832 18.912 15.12 18.816 15.336C18.744 15.528 18.24 16.032 17.88 16.44C17.52 16.824 17.256 17.112 17.256 17.4C17.256 17.688 17.544 17.952 17.856 18.216C18.168 18.48 18.96 18.888 19.344 19.008C19.728 19.128 20.256 19.44 20.544 19.44C20.832 19.44 21.072 19.272 21.792 18.408C21.888 18.288 22.336 18.856 22.336 18.856Z"/>
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.001 2.672c-7.36 0-13.328 5.968-13.328 13.328s5.968 13.328 13.328 13.328 13.328-5.968 13.328-13.328S23.361 2.672 16.001 2.672zm0 24.352c-6.08 0-11.024-4.944-11.024-11.024S9.921 4.976 16.001 4.976s11.024 4.944 11.024 11.024-4.944 11.024-11.024 11.024zm5.008-8.112c-.24-.12-.864-.432-1-.48s-.24-.072-.336.072c-.096.144-.384.48-.48.576s-.192.12-.336.048c-.144-.072-1.104-.408-2.096-1.272s-1.632-1.944-1.92-2.28c-.288-.336-.072-.504.048-.648s.144-.192.216-.288c.072-.096.096-.144.048-.24s-.336-.816-.456-.1.104c-.12-.024-.24-.024-.36-.024s-.24-.024-.36-.024c-.12 0-.312.048-.48.24s-.648.624-.648 1.512c0 .888.672 1.752.768 1.872s1.296 1.968 3.144 2.76c1.848.792 1.848.528 2.184.504s1.008-.408 1.152-.816c.144-.408.144-.744.096-.816s-.072-.12-.216-.24z" fill-rule="evenodd" clip-rule="evenodd" fill="white"/>
             </svg>
         </a>
     </div>
@@ -412,15 +465,14 @@
         const TOTAL_LEARNING_DAYS = 277; 
         const APP_STORAGE_KEY = 'linguaDiariaProgress';
         const THEME_STORAGE_KEY = 'linguaDiariaTheme';
-        const INTRO_VIDEO_ID = "dQw4w9WgXcQ"; // ID do vídeo de introdução do YouTube
+        const INTRO_VIDEO_ID = "dQw4w9WgXcQ"; 
 
         // --- Array de Frases Motivacionais ---
         let dailyMotivationalQuotes = [];
         dailyMotivationalQuotes[1] = { day: 1, en: "The journey of a thousand miles begins with a single step.", pt: "A jornada de mil milhas começa com um único passo.", author: "Lao Tzu" };
         dailyMotivationalQuotes[2] = { day: 2, en: "Don't watch the clock; do what it does. Keep going.", pt: "Não observe o relógio; faça o que ele faz. Continue andando.", author: "Sam Levenson" };
-        // Preenche as demais frases (até 277) para garantir que existam
         for (let i = 3; i <= 277; i++) {
-            if (!dailyMotivationalQuotes[i]) { // Adiciona apenas se não existir para não sobrescrever
+            if (!dailyMotivationalQuotes[i]) { 
                 dailyMotivationalQuotes[i] = { 
                     day: i, 
                     en: `Motivational Quote for Day ${i} - Remember to add specific content.`, 
@@ -432,24 +484,20 @@
         
         // --- Dados das Lições ---
         const lessonsData = [
-            // Lição de introdução
             { id: 'intro', type: 'intro', title: "Bem-vindo à Língua Diária!", videoId: INTRO_VIDEO_ID },
-            // Lições dos dias (sem links de materiais PDF)
             { id: 1, type: 'interactive_page', title: "Dia 1: Os Fundamentos Essenciais", pageUrl: "aulas/dia1.html" }, 
             { id: 2, type: 'interactive_page', title: "Dia 2: Primeiras Conversas", pageUrl: "aulas/dia2.html" },
         ];
-        // Adiciona as demais lições programaticamente
         for (let i = 3; i <= TOTAL_LEARNING_DAYS; i++) {
             lessonsData.push({
                 id: i,
                 type: 'interactive_page',
                 title: `Dia ${i}: Tópico da Aula ${i}`, 
                 pageUrl: `aulas/dia${i}.html`, 
-                // Não há mais 'materialsLink' ou 'materialsText' aqui
             });
         }
 
-        // --- ELEMENTOS DO DOM (Referências aos elementos HTML) ---
+        // --- ELEMENTOS DO DOM ---
         const quoteTextEl = document.getElementById('quote-text');
         const quoteAuthorEl = document.getElementById('quote-author');
         const quoteTranslationEl = document.getElementById('quote-translation');
@@ -458,10 +506,11 @@
         const progressBarIconEl = document.getElementById('progress-bar-icon');
         const progressTextEl = document.getElementById('progress-text');
         const lessonTitleEl = document.getElementById('lesson-title');
-        const lessonContentEmbedEl = document.getElementById('lesson-content-embed'); // Div que contém o iframe/imagem da aula
-        const lessonMaterialsContainerEl = document.getElementById('lesson-materials-container'); // Container para materiais (agora não usado)
-        const lessonMaterialsLinkEl = document.getElementById('lesson-materials-link'); // Link para materiais (agora não usado)
+        const lessonContentEmbedEl = document.getElementById('lesson-content-embed');
+        const lessonMaterialsContainerEl = document.getElementById('lesson-materials-container'); // Não usado atualmente
+        const lessonMaterialsLinkEl = document.getElementById('lesson-materials-link'); // Não usado atualmente
         const completeLessonButton = document.getElementById('complete-lesson-button');
+        const previousLessonButton = document.getElementById('previous-lesson-button'); // Novo botão
         const lessonMessageEl = document.getElementById('lesson-message');
         const courseCompletedMessageEl = document.getElementById('course-completed-message');
         const currentYearEl = document.getElementById('currentYear');
@@ -471,52 +520,55 @@
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-        // --- ESTADO DA APLICAÇÃO (Variáveis globais) ---
-        let currentQuoteObject = null; // Objeto da citação atual
-        let translationVisible = false; // Controla visibilidade da tradução da citação
-        let userProgress = { // Progresso do usuário
+        // Elementos do Modal da Lição
+        const lessonModalEl = document.getElementById('lesson-modal');
+        const modalLessonTitleEl = document.getElementById('modal-lesson-title');
+        const modalLessonContentEl = document.getElementById('modal-lesson-content');
+        const closeLessonModalButtonEl = document.getElementById('close-lesson-modal');
+
+
+        // --- ESTADO DA APLICAÇÃO ---
+        let currentQuoteObject = null;
+        let translationVisible = false;
+        let userProgress = {
             introCompleted: false,
             currentLearningDay: 1, 
             lastActivityDate: null 
         };
+        let currentLessonData = null; // Para armazenar dados da lição atual para o modal
 
         // --- FUNÇÕES ---
-
-        // Função para aplicar o tema (claro/escuro)
         function applyTheme(theme) {
             if (theme === 'dark') {
-                document.documentElement.classList.add('dark'); // Adiciona classe 'dark' ao HTML
-                themeToggleDarkIcon.classList.remove('hidden'); // Mostra ícone de sol
-                themeToggleLightIcon.classList.add('hidden');  // Esconde ícone de lua
+                document.documentElement.classList.add('dark');
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');  
             } else {
-                document.documentElement.classList.remove('dark'); // Remove classe 'dark'
-                themeToggleDarkIcon.classList.add('hidden');    // Esconde ícone de sol
-                themeToggleLightIcon.classList.remove('hidden'); // Mostra ícone de lua
+                document.documentElement.classList.remove('dark');
+                themeToggleDarkIcon.classList.add('hidden');   
+                themeToggleLightIcon.classList.remove('hidden');
             }
         }
 
-        // Função para alternar o tema
         function toggleTheme() {
             const currentTheme = localStorage.getItem(THEME_STORAGE_KEY);
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            localStorage.setItem(THEME_STORAGE_KEY, newTheme); // Salva preferência no localStorage
+            localStorage.setItem(THEME_STORAGE_KEY, newTheme);
             applyTheme(newTheme);
         }
         
-        // Função para carregar o tema salvo ou preferência do sistema
         function loadTheme() {
             const preferredTheme = localStorage.getItem(THEME_STORAGE_KEY);
             if (preferredTheme) {
                 applyTheme(preferredTheme);
             } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                applyTheme('dark'); // Usa tema escuro se for preferência do sistema
+                applyTheme('dark');
             }
             else {
-                applyTheme('light'); // Padrão para tema claro
+                applyTheme('light'); 
             }
         }
 
-        // Função para exibir a citação motivacional diária
         function displayDailyQuote() {
             let quoteToDisplay;
             if (!userProgress.introCompleted) {
@@ -529,7 +581,6 @@
                        dailyMotivationalQuotes[userProgress.currentLearningDay].en) {
                 quoteToDisplay = dailyMotivationalQuotes[userProgress.currentLearningDay];
             } else {
-                // Fallback se a citação não for encontrada
                 console.warn(`Quote for day ${userProgress.currentLearningDay} not found. Using placeholder.`);
                 quoteToDisplay = {
                     en: `English Quote for Day ${userProgress.currentLearningDay} - (Content missing)`,
@@ -546,25 +597,22 @@
                 quoteAuthorEl.classList.add('hidden');
             }
             quoteTranslationEl.textContent = currentQuoteObject.pt;
-            quoteTranslationEl.classList.add('hidden'); // Tradução começa escondida
+            quoteTranslationEl.classList.add('hidden');
             translateButton.textContent = 'Mostrar Tradução';
             translationVisible = false;
         }
 
-        // Função para mostrar/ocultar a tradução da citação
         function toggleTranslation() {
             translationVisible = !translationVisible;
             quoteTranslationEl.classList.toggle('hidden', !translationVisible);
             translateButton.textContent = translationVisible ? 'Ocultar Tradução' : 'Mostrar Tradução';
         }
 
-        // Função para carregar o progresso do usuário do localStorage
         function loadProgress() {
             const savedProgress = localStorage.getItem(APP_STORAGE_KEY);
             if (savedProgress) {
                 try {
                     const parsedProgress = JSON.parse(savedProgress);
-                    // Validação básica dos dados carregados
                     if (typeof parsedProgress.introCompleted === 'boolean' &&
                         typeof parsedProgress.currentLearningDay === 'number' &&
                         parsedProgress.currentLearningDay >= 1 &&
@@ -573,21 +621,18 @@
                         userProgress = parsedProgress;
                     } else {
                         console.warn("Progresso salvo inválido. Usando padrão.");
-                        saveProgress(); // Salva o progresso padrão se o carregado for inválido
+                        saveProgress();
                     }
                 } catch (error) {
                     console.error("Erro ao carregar progresso:", error);
-                    // Mantém o progresso padrão inicializado em caso de erro
                 }
             }
         }
 
-        // Função para salvar o progresso do usuário no localStorage
         function saveProgress() {
             localStorage.setItem(APP_STORAGE_KEY, JSON.stringify(userProgress));
         }
 
-        // Função para atualizar a barra de progresso
         function updateProgressBar() {
             let daysEffectivelyCompleted = 0;
             if (userProgress.introCompleted) {
@@ -596,44 +641,68 @@
             const percentage = userProgress.introCompleted ? Math.min(100, (daysEffectivelyCompleted / TOTAL_LEARNING_DAYS) * 100) : 0;
             progressBarFillEl.style.width = `${percentage}%`;
             progressBarFillEl.textContent = `${Math.floor(percentage)}%`;
-            
-            // Ajusta a posição do ícone na barra de progresso
             let iconLeftPercentage;
-            if (percentage >= 97) { // Evita que o ícone saia da barra no final
+            if (percentage >= 97) {
                 iconLeftPercentage = `calc(100% - 28px)`; 
-            } else if (percentage < 3 && percentage > 0) { // Evita que o ícone saia da barra no início
+            } else if (percentage < 3 && percentage > 0) {
                  iconLeftPercentage = `0%`;
             } else {
                 iconLeftPercentage = `${percentage}%`;
             }
             progressBarIconEl.style.left = iconLeftPercentage;
 
-            // Atualiza o texto da barra de progresso
             if (!userProgress.introCompleted) {
                 progressTextEl.textContent = "Complete a introdução para iniciar sua jornada!";
             } else if (daysEffectivelyCompleted >= TOTAL_LEARNING_DAYS) {
                 progressTextEl.textContent = `Parabéns! Você concluiu todos os ${TOTAL_LEARNING_DAYS} dias de aprendizado!`;
-                progressBarIconEl.style.left = `calc(100% - 28px)`; // Garante ícone no final
+                progressBarIconEl.style.left = `calc(100% - 28px)`;
             } else {
                 progressTextEl.textContent = `Dia ${daysEffectivelyCompleted} de ${TOTAL_LEARNING_DAYS} concluídos. Próxima aula: Dia ${userProgress.currentLearningDay}.`;
             }
         }
         
-        // Função para obter a data atual no formato YYYY-MM-DD
         function getTodayDateString() {
             const today = new Date();
             return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
         }
 
-        // Função para carregar o conteúdo da lição na UI
+        // Função para abrir a lição no modal
+        function openLessonModal(lesson) {
+            if (!lesson || !lesson.pageUrl) {
+                console.error("Dados da lição ou URL da página ausentes para o modal.");
+                modalLessonContentEl.innerHTML = `<p class="p-4 text-center text-red-600 dark:text-red-400">Erro ao carregar conteúdo da aula.</p>`;
+                modalLessonTitleEl.textContent = "Erro";
+                lessonModalEl.classList.remove('hidden');
+                setTimeout(() => lessonModalEl.classList.remove('opacity-0'), 10); // Força reflow para transição
+                return;
+            }
+            currentLessonData = lesson; // Armazena dados da lição atual
+            modalLessonTitleEl.textContent = lesson.title;
+            const pageUrlWithCacheBuster = IS_DEVELOPMENT_MODE ? `${lesson.pageUrl}?t=${new Date().getTime()}` : lesson.pageUrl;
+            modalLessonContentEl.innerHTML = `<iframe src="${pageUrlWithCacheBuster}" title="${lesson.title}"></iframe>`;
+            lessonModalEl.classList.remove('hidden');
+            setTimeout(() => lessonModalEl.classList.remove('opacity-0'), 10); 
+        }
+
+        // Função para fechar o modal da lição
+        function closeLessonModal() {
+            lessonModalEl.classList.add('opacity-0');
+            setTimeout(() => {
+                lessonModalEl.classList.add('hidden');
+                modalLessonContentEl.innerHTML = ''; // Limpa o iframe para parar vídeos/áudios
+                currentLessonData = null; // Limpa dados da lição atual
+            }, 300); // Tempo da transição de opacidade
+        }
+
+
         function loadLessonContentUI(lesson) {
             lessonTitleEl.textContent = lesson.title;
-            lessonContentEmbedEl.innerHTML = ''; // Limpa conteúdo anterior
+            lessonContentEmbedEl.innerHTML = ''; // Limpa conteúdo anterior (botão ou iframe de intro)
 
             // Reseta estilos do container para cada tipo de conteúdo
             lessonContentEmbedEl.style.paddingBottom = '';
             lessonContentEmbedEl.style.height = '';
-            lessonContentEmbedEl.style.overflow = 'hidden'; 
+            // lessonContentEmbedEl.style.overflow = 'hidden'; // Removido para permitir que o botão seja clicável
 
             if (lesson.type === 'intro') {
                 // Estilo para vídeo de introdução (mantém aspect ratio 16:9)
@@ -643,82 +712,74 @@
                 if (lesson.videoId && lesson.videoId !== "your_youtube_intro_video_id" && !lesson.videoId.startsWith("placeholder")) {
                     lessonContentEmbedEl.innerHTML = `<iframe src="https://www.youtube.com/watch?v=1_eKyE_mHrg&pp=0gcJCdgAo7VqN5tD{lesson.videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="${lesson.title}"></iframe>`;
                 } else {
-                    // Placeholder se o ID do vídeo não estiver configurado
                     lessonContentEmbedEl.innerHTML = `<img src="https://placehold.co/1600x900/e2e8f0/64748b?text=Configure+o+V%C3%ADdeo+de+Introdu%C3%A7%C3%A3o" alt="Vídeo de introdução" class="w-full h-full object-cover rounded-md">`;
                 }
             } else if (lesson.type === 'interactive_page') {
-                // Estilo para página interativa (iframe expandido)
-                lessonContentEmbedEl.style.height = '75vh'; // Define altura para "expandir"
-
+                lessonContentEmbedEl.style.height = 'auto'; // Altura automática para acomodar o botão
                 if (lesson.pageUrl) {
-                    const pageUrlWithCacheBuster = IS_DEVELOPMENT_MODE ? `${lesson.pageUrl}?t=${new Date().getTime()}` : lesson.pageUrl;
-                    lessonContentEmbedEl.innerHTML = `<iframe src="${pageUrlWithCacheBuster}" title="${lesson.title}" class="interactive-page-iframe"></iframe>`;
+                    // Cria um botão para abrir a aula no modal
+                    const openButton = document.createElement('button');
+                    openButton.id = 'open-lesson-in-modal-button';
+                    openButton.className = 'btn btn-primary';
+                    openButton.textContent = `Abrir ${lesson.title}`;
+                    openButton.onclick = () => openLessonModal(lesson);
+                    lessonContentEmbedEl.appendChild(openButton);
                 } else {
-                    // Mensagem se a URL da página da aula não estiver configurada
                     lessonContentEmbedEl.innerHTML = `<p class="p-4 text-center">Conteúdo da página interativa não configurado (pageUrl ausente para o dia ${lesson.id}).</p>`;
-                    lessonContentEmbedEl.style.height = 'auto'; // Altura automática para mensagem de erro
                 }
             }
 
-            // Gerenciamento de materiais adicionais (agora sempre esconde, pois foram removidos dos dados)
-            if (lesson.materialsLink && lesson.materialsText) {
-                lessonMaterialsLinkEl.href = lesson.materialsLink;
-                lessonMaterialsLinkEl.textContent = lesson.materialsText;
-                lessonMaterialsContainerEl.classList.remove('hidden');
-            } else {
-                lessonMaterialsContainerEl.classList.add('hidden'); // Garante que está escondido
-            }
+            // Materiais adicionais não são mais usados, então o container fica escondido
+            lessonMaterialsContainerEl.classList.add('hidden');
         }
 
-        // Função para gerenciar a exibição da lição atual e controles
         function manageLessonDisplayAndControls() {
-            lessonMessageEl.classList.add('hidden'); // Esconde mensagens anteriores
+            lessonMessageEl.classList.add('hidden');
             lessonMessageEl.textContent = '';
-            courseCompletedMessageEl.classList.add('hidden'); // Esconde mensagem de curso completo
-            completeLessonButton.classList.remove('hidden'); // Mostra botão de completar
-            completeLessonButton.disabled = false; // Habilita botão
-            
+            courseCompletedMessageEl.classList.add('hidden');
+            completeLessonButton.classList.remove('hidden');
+            completeLessonButton.disabled = false; 
+            previousLessonButton.classList.remove('hidden'); // Mostra o botão de aula anterior
+
             let currentLessonToShow;
             let lessonIdentifier; 
 
             if (!userProgress.introCompleted) {
-                // Se a introdução não foi completada, mostra a introdução
                 currentLessonToShow = lessonsData.find(l => l.id === 'intro');
                 lessonIdentifier = 'intro';
                 completeLessonButton.textContent = "Concluir Introdução";
+                previousLessonButton.disabled = true; // Desabilita "Aula Anterior" na introdução
             } else {
-                // Se a introdução foi completada
                 if (userProgress.currentLearningDay > TOTAL_LEARNING_DAYS) {
-                    // Se todas as aulas foram completadas
                     lessonTitleEl.textContent = "Jornada Concluída!";
                     lessonContentEmbedEl.innerHTML = '<div class="p-4 text-center"><p class="text-lg text-green-600 dark:text-green-400">Fantástico! Você dominou todos os dias de aprendizado!</p><p class="mt-2 text-gray-700 dark:text-gray-300">Continue praticando para solidificar seu conhecimento.</p></div>';
                     lessonContentEmbedEl.style.paddingBottom = '0'; 
                     lessonContentEmbedEl.style.height = 'auto'; 
-                    lessonMaterialsContainerEl.classList.add('hidden');
-                    completeLessonButton.classList.add('hidden'); // Esconde botão de completar
-                    courseCompletedMessageEl.classList.remove('hidden'); // Mostra mensagem de curso completo
+                    completeLessonButton.classList.add('hidden');
+                    previousLessonButton.classList.add('hidden'); // Esconde "Aula Anterior" se o curso estiver completo
+                    courseCompletedMessageEl.classList.remove('hidden');
                     updateProgressBar();
                     return;
                 }
-                // Mostra a aula do dia atual
                 currentLessonToShow = lessonsData.find(l => l.id === userProgress.currentLearningDay && l.type === 'interactive_page');
                 lessonIdentifier = userProgress.currentLearningDay;
                 completeLessonButton.textContent = `Marcar Dia ${userProgress.currentLearningDay} como Concluído`;
+                // Habilita/desabilita "Aula Anterior"
+                previousLessonButton.disabled = userProgress.currentLearningDay <= 1;
             }
 
             if (!currentLessonToShow) {
-                // Se a aula não for encontrada (erro de configuração)
                 lessonTitleEl.textContent = "Erro de Aula";
                 lessonContentEmbedEl.innerHTML = `<p class='p-4 text-center text-red-600 dark:text-red-400'>Oops! Aula para '${lessonIdentifier}' não encontrada. Por favor, verifique.</p>`;
                 lessonContentEmbedEl.style.paddingBottom = '0';
                 lessonContentEmbedEl.style.height = 'auto'; 
                 completeLessonButton.classList.add('hidden');
+                previousLessonButton.disabled = true;
                 return;
             }
 
-            loadLessonContentUI(currentLessonToShow); // Carrega o conteúdo da aula
+            loadLessonContentUI(currentLessonToShow);
 
-            // Verifica se a atividade do dia já foi completada (exceto em modo de desenvolvimento)
             const todayStr = getTodayDateString();
             if (userProgress.lastActivityDate === todayStr && !IS_DEVELOPMENT_MODE) {
                 let message = "";
@@ -726,30 +787,44 @@
                      message = `Introdução concluída hoje! Volte amanhã para iniciar o Dia 1.`;
                 } 
                 else if (lessonIdentifier !== 'intro' && userProgress.currentLearningDay > 1) { 
-                    const previousDayCompleted = userProgress.currentLearningDay -1;
+                    const previousDayCompleted = userProgress.currentLearningDay -1; // Dia que foi completado
                     message = `Você já completou a atividade de hoje (Dia ${previousDayCompleted}). Volte amanhã para o Dia ${userProgress.currentLearningDay}!`;
                 }
                 if (message) {
                     lessonMessageEl.textContent = message;
                     lessonMessageEl.className = 'mb-4 p-3 bg-blue-100 text-blue-700 border border-blue-300 rounded-md text-sm sm:text-base dark:bg-blue-800 dark:text-blue-200 dark:border-blue-600';
                     lessonMessageEl.classList.remove('hidden');
-                    completeLessonButton.disabled = true; // Desabilita botão
+                    completeLessonButton.disabled = true;
                     completeLessonButton.textContent = "Volte Amanhã";
+                    // Não desabilitar o previousLessonButton aqui, pois o usuário pode querer rever
                 }
             } else if (IS_DEVELOPMENT_MODE && userProgress.lastActivityDate === todayStr) {
-                // Mensagem para modo de desenvolvimento
                 lessonMessageEl.textContent = `(Modo de Teste) Atividade diária já registrada para ${todayStr}, mas você pode continuar.`;
                 lessonMessageEl.className = 'mb-4 p-3 bg-purple-100 text-purple-700 border border-purple-300 rounded-md text-sm sm:text-base dark:bg-purple-800 dark:text-purple-200 dark:border-purple-600';
                 lessonMessageEl.classList.remove('hidden');
             }
         }
+        
+        // Função para lidar com o clique no botão "Aula Anterior"
+        function handlePreviousLesson() {
+            if (!userProgress.introCompleted || userProgress.currentLearningDay <= 1) {
+                // Não faz nada se estiver na introdução ou no primeiro dia após a introdução
+                return;
+            }
+            if (userProgress.currentLearningDay > 1) {
+                userProgress.currentLearningDay -= 1;
+                // Não é necessário mudar lastActivityDate ao voltar, apenas ao completar
+                saveProgress();
+                displayDailyQuote(); // A citação deve ser do dia atual, não do anterior
+                updateProgressBar();
+                manageLessonDisplayAndControls();
+            }
+        }
 
-        // Função para lidar com a conclusão de uma lição
+
         function handleCompleteLesson() {
             const todayStr = getTodayDateString();
-            lessonMessageEl.className = 'mb-4 p-3 border rounded-md text-sm sm:text-base hidden'; // Reseta classes da mensagem
-            
-            // Impede completar mais de uma atividade por dia (exceto em modo de desenvolvimento)
+            lessonMessageEl.className = 'mb-4 p-3 border rounded-md text-sm sm:text-base hidden'; 
             if (userProgress.lastActivityDate === todayStr && !IS_DEVELOPMENT_MODE) {
                 lessonMessageEl.textContent = `Você só pode completar uma atividade por dia. Volte amanhã!`;
                 lessonMessageEl.classList.add('bg-yellow-100', 'text-yellow-700', 'border-yellow-300', 'dark:bg-yellow-700', 'dark:text-yellow-200', 'dark:border-yellow-500');
@@ -757,10 +832,8 @@
                 completeLessonButton.disabled = true;
                 return;
             }
-
             let messageAfterCompletion = "";
             if (!userProgress.introCompleted) {
-                // Completa a introdução
                 userProgress.introCompleted = true;
                 messageAfterCompletion = `Introdução concluída!`;
                 if (IS_DEVELOPMENT_MODE) {
@@ -769,13 +842,10 @@
                     messageAfterCompletion += ` Você está pronto para começar o Dia 1.`;
                 }
             } else { 
-                // Completa uma aula regular
                 if (userProgress.currentLearningDay <= TOTAL_LEARNING_DAYS) {
                     const dayJustCompleted = userProgress.currentLearningDay;
-                    userProgress.currentLearningDay += 1; // Avança para o próximo dia
-                    
+                    userProgress.currentLearningDay += 1; 
                     if (dayJustCompleted >= TOTAL_LEARNING_DAYS) { 
-                        // Se completou a última aula
                         messageAfterCompletion = `Parabéns! Dia ${dayJustCompleted} concluído. Você finalizou todas as aulas de aprendizado!`;
                     } else { 
                         messageAfterCompletion = `Dia ${dayJustCompleted} concluído!`;
@@ -787,55 +857,46 @@
                     }
                 }
             }
-
-            // Exibe mensagem de conclusão
             if (messageAfterCompletion) {
                 lessonMessageEl.textContent = messageAfterCompletion;
                 lessonMessageEl.classList.add('bg-green-100', 'text-green-700', 'border-green-300', 'dark:bg-green-800', 'dark:text-green-200', 'dark:border-green-600');
                 lessonMessageEl.classList.remove('hidden');
             }
-
-            userProgress.lastActivityDate = todayStr; // Registra a data da atividade
-            saveProgress(); // Salva o progresso
-            displayDailyQuote(); // Atualiza a citação
-            updateProgressBar(); // Atualiza a barra de progresso
-            manageLessonDisplayAndControls(); // Atualiza a exibição da lição
+            userProgress.lastActivityDate = todayStr; 
+            saveProgress();
+            displayDailyQuote(); 
+            updateProgressBar(); 
+            manageLessonDisplayAndControls(); 
         }
 
-        // Função para exportar o progresso como JSON
         function exportProgress() {
-            const progressJson = JSON.stringify(userProgress, null, 2); // Formata o JSON para leitura
+            const progressJson = JSON.stringify(userProgress, null, 2);
             const blob = new Blob([progressJson], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'lingua_diaria_progresso.json'; // Nome do arquivo
+            a.download = 'lingua_diaria_progresso.json';
             document.body.appendChild(a);
-            a.click(); // Simula o clique para download
-            document.body.removeChild(a); // Remove o elemento 'a'
-            URL.revokeObjectURL(url); // Libera o objeto URL
-
-            // Mensagem de sucesso
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
             lessonMessageEl.textContent = "Seu progresso foi exportado como 'lingua_diaria_progresso.json'. Guarde este arquivo!";
             lessonMessageEl.className = 'mb-4 p-3 bg-green-100 text-green-700 border border-green-300 rounded-md text-sm sm:text-base dark:bg-green-800 dark:text-green-200 dark:border-green-600';
             lessonMessageEl.classList.remove('hidden');
         }
 
-        // Função para importar o progresso de um arquivo JSON
         function importProgress(event) {
             const file = event.target.files[0];
-            lessonMessageEl.className = 'mb-4 p-3 border rounded-md text-sm sm:text-base hidden'; // Reseta mensagem
+            lessonMessageEl.className = 'mb-4 p-3 border rounded-md text-sm sm:text-base hidden';
             if (!file) return;
-
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
                     const importedProgress = JSON.parse(e.target.result);
-                    // Validação básica do progresso importado
                     if (typeof importedProgress.introCompleted === 'boolean' &&
                         typeof importedProgress.currentLearningDay === 'number' &&
                         importedProgress.currentLearningDay >= 1 &&
-                        importedProgress.currentLearningDay <= (TOTAL_LEARNING_DAYS + 1) && // Permite importar até o estado "concluído"
+                        importedProgress.currentLearningDay <= (TOTAL_LEARNING_DAYS + 1) && 
                         (importedProgress.lastActivityDate === null || (typeof importedProgress.lastActivityDate === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(importedProgress.lastActivityDate)))
                        ) {
                         userProgress = importedProgress;
@@ -855,37 +916,44 @@
                     lessonMessageEl.classList.add('bg-red-100', 'text-red-700', 'border-red-300', 'dark:bg-red-800', 'dark:text-red-200', 'dark:border-red-600');
                 } finally {
                     lessonMessageEl.classList.remove('hidden');
-                    importProgressInput.value = ""; // Limpa o input de arquivo
+                    importProgressInput.value = ""; 
                 }
             };
-            reader.readAsText(file); // Lê o arquivo como texto
+            reader.readAsText(file);
         }
 
-        // Função de inicialização da aplicação
         function initApp() {
-            currentYearEl.textContent = new Date().getFullYear(); // Define o ano atual no rodapé
+            currentYearEl.textContent = new Date().getFullYear();
             
-            loadTheme(); // Carrega o tema
-            themeToggleButton.addEventListener('click', toggleTheme); // Adiciona evento ao botão de tema
+            loadTheme(); 
+            themeToggleButton.addEventListener('click', toggleTheme);
 
-            translateButton.addEventListener('click', toggleTranslation); // Adiciona evento ao botão de tradução
+            translateButton.addEventListener('click', toggleTranslation);
             
-            loadProgress(); // Carrega o progresso do usuário
-            displayDailyQuote(); // Exibe a citação do dia
-            updateProgressBar(); // Atualiza a barra de progresso
-            manageLessonDisplayAndControls(); // Gerencia a exibição da lição atual
+            loadProgress(); 
+            displayDailyQuote(); 
+            updateProgressBar(); 
+            manageLessonDisplayAndControls();
 
-            // Adiciona eventos aos botões de completar, exportar e importar
             completeLessonButton.addEventListener('click', handleCompleteLesson);
+            previousLessonButton.addEventListener('click', handlePreviousLesson); // Evento para o novo botão
             exportProgressButton.addEventListener('click', exportProgress);
             importProgressInput.addEventListener('change', importProgress);
+            closeLessonModalButtonEl.addEventListener('click', closeLessonModal); // Evento para fechar o modal
+
+            // Fechar modal com tecla Esc
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !lessonModalEl.classList.contains('hidden')) {
+                    closeLessonModal();
+                }
+            });
+
 
             if (IS_DEVELOPMENT_MODE) {
                 console.log("Língua Diária rodando em MODO DE DESENVOLVIMENTO.");
             }
         }
 
-        // Inicializa a aplicação quando o DOM estiver carregado
         document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
