@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dia 10: Praticando com Frases</title>
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos básicos para a página da aula */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            padding: 1.5rem; 
+            background-color: #f9fafb; 
+            color: #1f2937; 
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Adaptação simples para modo escuro (opcional, sincronizar via JS se necessário) */
+        .dark body {
+             background-color: #374151;
+             color: #d1d5db;
+        }
+        h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #4f46e5; }
+        .dark h1 { color: #a5b4fc; }
+        h2 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #111827;}
+        .dark h2 { color: #f3f4f6; }
+        p { margin-bottom: 0.75rem; line-height: 1.6; }
+        .phrase-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        .dark .phrase-card {
+            background-color: #4b5563; /* gray-600 */
+            border-color: #6b7280; /* gray-500 */
+        }
+        .phrase-en {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+        .dark .phrase-en {
+            color: #f9fafb;
+        }
+        .phrase-pt {
+            color: #4b5563;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            border-left: 3px solid #a5b4fc;
+            padding-left: 0.75rem;
+        }
+        .dark .phrase-pt {
+            color: #d1d5db;
+            border-left-color: #818cf8;
+        }
+        .action-button {
+            background-color: #e0e7ff;
+            color: #3730a3;
+            padding: 0.3rem 0.8rem;
+            border-radius: 0.375rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-right: 0.5rem;
+            border: none;
+        }
+        .action-button:hover {
+            background-color: #c7d2fe;
+        }
+        .dark .action-button {
+            background-color: #4338ca;
+            color: #e0e7ff;
+        }
+        .dark .action-button:hover {
+            background-color: #4f46e5;
+        }
+        audio {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dia 10: Praticando com Frases e Áudio</h1>
+
+    <p>Vamos praticar o que aprendemos! Ouça o diálogo e depois pratique com as frases abaixo.</p>
+
+    <h2>Compreensão Auditiva</h2>
+    <p>Ouça este pequeno diálogo sobre pedir comida em um restaurante:</p>
+    <audio controls>
+        <source src="caminho/para/seu/dialogo_aula10.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio. Tente atualizar ou usar outro navegador.
+    </audio>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Dica: Tente anotar as palavras-chave que você ouvir!</p>
+
+    <h2>Prática de Frases</h2>
+    <p>Reveja estas frases úteis. Clique para ver a tradução e ouvir a pronúncia.</p>
+
+    <div class="phrase-card">
+        <p class="phrase-en">"Could I have the menu, please?"</p>
+        <button class="action-button btn-toggle-translation">Mostrar Tradução</button>
+        <button class="action-button btn-play-audio">Ouvir Frase</button>
+        <p class="phrase-pt hidden">"Eu poderia ver o cardápio, por favor?"</p>
+    </div>
+
+    <div class="phrase-card">
+        <p class="phrase-en">"I would like to order the chicken salad."</p>
+        <button class="action-button btn-toggle-translation">Mostrar Tradução</button>
+        <button class="action-button btn-play-audio">Ouvir Frase</button>
+        <p class="phrase-pt hidden">"Eu gostaria de pedir a salada de frango."</p>
+    </div>
+
+    <div class="phrase-card">
+        <p class="phrase-en">"Is the tip included in the bill?"</p>
+        <button class="action-button btn-toggle-translation">Mostrar Tradução</button>
+        <button class="action-button btn-play-audio">Ouvir Frase</button>
+        <p class="phrase-pt hidden">"A gorjeta está incluída na conta?"</p>
+    </div>
+
+    <div class="phrase-card">
+        <p class="phrase-en">"Everything was delicious, thank you!"</p>
+        <button class="action-button btn-toggle-translation">Mostrar Tradução</button>
+        <button class="action-button btn-play-audio">Ouvir Frase</button>
+        <p class="phrase-pt hidden">"Estava tudo delicioso, obrigado(a)!"</p>
+    </div>
+
+    <script>
+        // Adiciona interatividade aos botões
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Botões de Tradução
+            const translationButtons = document.querySelectorAll('.btn-toggle-translation');
+            translationButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const card = button.closest('.phrase-card'); // Encontra o card pai
+                    if (card) {
+                        const translationElement = card.querySelector('.phrase-pt');
+                        if (translationElement) {
+                            const isHidden = translationElement.classList.contains('hidden');
+                            translationElement.classList.toggle('hidden');
+                            button.textContent = isHidden ? 'Ocultar Tradução' : 'Mostrar Tradução';
+                        }
+                    }
+                });
+            });
+
+            // Botões de Áudio (Simulação)
+            const audioButtons = document.querySelectorAll('.btn-play-audio');
+            audioButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // --- Simulação ---
+                    // Em um cenário real, você usaria a Web Audio API ou uma biblioteca
+                    // para tocar um áudio específico para esta frase.
+                    const card = button.closest('.phrase-card');
+                    const phrase = card ? card.querySelector('.phrase-en').textContent : 'a frase';
+                    
+                    // Exibe uma mensagem simples por enquanto
+                    alert(`Tocando áudio para: ${phrase}\n(Funcionalidade de áudio real a ser implementada)`);
+                    
+                    // --- Exemplo de como poderia ser com áudio real (requer arquivos de áudio) ---
+                    /* const phraseText = card.querySelector('.phrase-en').textContent.trim();
+                    let audioSrc = '';
+                    // Mapeia a frase para o arquivo de áudio correspondente
+                    if (phraseText === '"Could I have the menu, please?"') {
+                        audioSrc = 'caminho/para/audio/menu_please.mp3';
+                    } else if (phraseText === '"I would like to order the chicken salad."') {
+                         audioSrc = 'caminho/para/audio/order_salad.mp3';
+                    } // etc...
+
+                    if (audioSrc) {
+                        const audio = new Audio(audioSrc);
+                        audio.play().catch(e => console.error("Erro ao tocar áudio:", e));
+                    } else {
+                        alert('Áudio para esta frase não encontrado.');
+                    }
+                    */
+                });
+            });
+
+            // Opcional: Detectar tema da página principal (se possível via iframe)
+            // Isso é mais complexo e pode não funcionar devido a restrições de segurança do iframe.
+            // Uma abordagem mais simples seria passar o tema como parâmetro na URL do iframe,
+            // mas isso requer modificar o JS da página principal.
+            // Ex: iframe.src = `aulas/dia10.html?theme=${currentTheme}`;
+            // E aqui no dia10.html, ler o parâmetro:
+            // const urlParams = new URLSearchParams(window.location.search);
+            // const theme = urlParams.get('theme');
+            // if (theme === 'dark') {
+            //     document.documentElement.classList.add('dark');
+            // }
+
+        });
+    </script>
+
+</body>
+</html>
