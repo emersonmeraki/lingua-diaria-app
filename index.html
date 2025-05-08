@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class=""> 
+<html lang="pt-BR" class="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,18 +21,18 @@
             border-color: #4b5563;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
         }
-        .dark .text-gray-800 { color: #d1d5db; } 
-        .dark .text-gray-700 { color: #9ca3af; } 
-        .dark .text-gray-600 { color: #cbd5e1; } 
-        .dark .text-gray-500 { color: #a1a1aa; } 
-        .dark .text-indigo-600 { color: #a5b4fc; } 
-        .dark .text-indigo-700 { color: #818cf8; } 
-        .dark .hover\:text-indigo-800:hover { color: #6366f1; } 
-        .dark .bg-white { background-color: #374151; } 
+        .dark .text-gray-800 { color: #d1d5db; }
+        .dark .text-gray-700 { color: #9ca3af; }
+        .dark .text-gray-600 { color: #cbd5e1; }
+        .dark .text-gray-500 { color: #a1a1aa; }
+        .dark .text-indigo-600 { color: #a5b4fc; }
+        .dark .text-indigo-700 { color: #818cf8; }
+        .dark .hover\:text-indigo-800:hover { color: #6366f1; }
+        .dark .bg-white { background-color: #374151; }
         .dark .shadow-md { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5), 0 2px 4px -1px rgba(0,0,0,0.3); }
-        .dark .border-yellow-300 { border-color: #fcd34d; } 
-        .dark .bg-yellow-100 { background-color: #4f4629; } 
-        .dark .text-yellow-700 { color: #fef08a; } 
+        .dark .border-yellow-300 { border-color: #fcd34d; }
+        .dark .bg-yellow-100 { background-color: #4f4629; }
+        .dark .text-yellow-700 { color: #fef08a; }
         .dark .bg-green-100 { background-color: #224b3b; }
         .dark .text-green-700 { color: #6ee7b7; }
         .dark .border-green-300 { border-color: #34d399; }
@@ -45,8 +45,8 @@
         .dark .bg-purple-100 { background-color: #581c87; }
         .dark .text-purple-700 { color: #d8b4fe; }
         .dark .border-purple-300 { border-color: #c084fc; }
-        .dark .header-subtitle { color: #e5e7eb; } 
-        .dark .footer-text { color: #9ca3af; } 
+        .dark .header-subtitle { color: #e5e7eb; }
+        .dark .footer-text { color: #9ca3af; }
 
         .card {
             background-color: #ffffff;
@@ -70,51 +70,50 @@
             text-align: center;
         }
         .btn-primary {
-            background-color: #4f46e5; 
+            background-color: #4f46e5;
             color: white;
         }
         .btn-primary:hover {
-            background-color: #4338ca; 
+            background-color: #4338ca;
         }
-        .btn:disabled { /* Estilo geral para botões desabilitados */
-            background-color: #a5b4fc; 
+        .btn:disabled {
+            background-color: #a5b4fc;
             color: #e0e7ff;
             cursor: not-allowed;
             opacity: 0.7;
         }
         .dark .btn:disabled {
-            background-color: #6b7280; 
+            background-color: #6b7280;
             color: #9ca3af;
         }
         .btn-secondary {
-            background-color: #e0e7ff; 
-            color: #3730a3; 
+            background-color: #e0e7ff;
+            color: #3730a3;
         }
-        .btn-secondary:hover:not(:disabled) { /* Hover apenas se não estiver desabilitado */
-            background-color: #c7d2fe; 
+        .btn-secondary:hover:not(:disabled) {
+            background-color: #c7d2fe;
         }
         .dark .btn-secondary {
-            background-color: #4338ca; 
-            color: #e0e7ff; 
+            background-color: #4338ca;
+            color: #e0e7ff;
         }
         .dark .btn-secondary:hover:not(:disabled) {
-            background-color: #4f46e5; 
+            background-color: #4f46e5;
         }
-
 
         .progress-section-container {
             position: relative;
         }
         .progress-bar-wrapper {
             width: 100%;
-            background-color: #e5e7eb; 
+            background-color: #e5e7eb;
             border-radius: 0.75rem;
             overflow: hidden;
             height: 2rem;
             position: relative;
         }
         .dark .progress-bar-wrapper {
-            background-color: #4b5563; 
+            background-color: #4b5563;
         }
         .progress-bar-fill {
             background: linear-gradient(90deg, #4f46e5 0%, #818cf8 100%);
@@ -147,7 +146,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         .dark .progress-bar-icon {
-            background-color: #e0e7ff; 
+            background-color: #e0e7ff;
             border-color: #818cf8;
         }
         .progress-bar-icon svg {
@@ -162,78 +161,68 @@
         /* Container para o conteúdo da lição (vídeo de intro ou botão para abrir aula) */
         .content-container {
             position: relative;
-            overflow: hidden; 
+            overflow: hidden;
             max-width: 100%;
-            background: #e2e8f0; 
+            background: #e2e8f0;
             border-radius: 0.5rem;
-            min-height: 150px; /* Altura mínima para botão/placeholder */
-            display: flex; /* Para centralizar o botão "Abrir Aula" */
+            min-height: 150px;
+            display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column; /* Para empilhar botão e texto */
+            padding: 1rem; /* Espaçamento interno */
         }
         .dark .content-container {
-            background: #4b5563; 
+            background: #4b5563;
         }
-        .content-container iframe, /* Para vídeo de introdução */
-        .content-container img { /* Para placeholder de carregamento */
-            position: absolute; 
+        .content-container iframe,
+        .content-container img {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: 0;
-            border-radius: 0.5rem; 
+            border-radius: 0.5rem;
         }
-        /* Botão para abrir a aula no modal */
-        #open-lesson-in-modal-button {
-            padding: 0.75rem 2rem;
+        /* Botão para abrir a aula em nova aba */
+        .btn-open-lesson-tab {
+            margin-bottom: 0.75rem; /* Espaço abaixo do botão */
+            padding: 0.75rem 1.5rem;
         }
-
-        /* Modal para Tela Cheia da Aula */
-        #lesson-modal {
-            transition: opacity 0.3s ease-in-out;
+        /* Instrução para o usuário */
+        .lesson-open-instruction {
+            text-align: center;
+            font-size: 0.875rem; /* text-sm */
+            color: #4b5563; /* text-gray-600 */
         }
-        #lesson-modal.hidden {
-            opacity: 0;
-            pointer-events: none;
+        .dark .lesson-open-instruction {
+            color: #cbd5e1; /* text-gray-300 */
         }
-        #lesson-modal-content-wrapper {
-            width: 100%;
-            height: 100%;
-            max-width: 100vw; /* Garante que não exceda a largura da viewport */
-            max-height: 100vh; /* Garante que não exceda a altura da viewport */
-        }
-        #modal-lesson-content iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 0.375rem; /* rounded-md */
-        }
-
 
         .file-input-label {
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
             font-weight: 600;
-            background-color: #10b981; 
+            background-color: #10b981;
             color: white;
             cursor: pointer;
             display: inline-block;
             transition: background-color 0.3s ease;
         }
         .file-input-label:hover {
-            background-color: #059669; 
+            background-color: #059669;
         }
         .dark .file-input-label {
-            background-color: #059669; 
+            background-color: #059669;
         }
         .dark .file-input-label:hover {
-            background-color: #047857; 
+            background-color: #047857;
         }
         #import-progress-input {
             display: none;
         }
-        .action-buttons-container { /* Container para botões Exportar/Importar */
+        .action-buttons-container {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
@@ -246,26 +235,27 @@
                 gap: 0.75rem;
             }
         }
-        /* Container para botões de controle da lição (Anterior, Concluir) */
+        /* Container para botões de controle da lição (Concluir) */
         .lesson-controls-container {
             display: flex;
-            flex-wrap: wrap; /* Permite que os botões quebrem linha em telas menores */
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 0.5rem; /* Espaçamento entre botões */
-            margin-top: 1rem; /* Espaço acima dos botões de controle */
+            gap: 0.5rem;
+            margin-top: 1rem;
         }
 
 
         .quote-author {
-            font-size: 0.875rem; 
-            color: #4b5563; 
-            margin-top: 0.25rem; 
+            font-size: 0.875rem;
+            color: #4b5563;
+            margin-top: 0.25rem;
             text-align: right;
         }
         .dark .quote-author {
-            color: #9ca3af; 
+            color: #9ca3af;
         }
 
+        /* ESTILOS DO BOTÃO WHATSAPP - INÍCIO */
         .whatsapp-container {
             position: fixed;
             bottom: 20px;
@@ -273,46 +263,46 @@
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            align-items: center; 
+            align-items: center;
         }
         .whatsapp-callout {
-            background-color: #075E54; 
+            background-color: #075E54; /* Cor mais escura para o balão */
             color: white;
             padding: 8px 12px;
             border-radius: 8px;
-            font-size: 0.875rem; 
-            margin-bottom: 12px; 
+            font-size: 0.875rem; /* text-sm */
+            margin-bottom: 12px; /* Aumentado para mais espaço */
             white-space: nowrap;
-            position: relative; 
+            position: relative;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            opacity: 0; 
-            transform: translateY(10px); 
+            opacity: 0; /* Começa invisível */
+            transform: translateY(10px); /* Começa um pouco abaixo */
             transition: opacity 0.3s ease, transform 0.3s ease;
-            pointer-events: none; 
+            pointer-events: none; /* Para não interferir no clique do botão */
         }
-        .whatsapp-container:hover .whatsapp-callout { 
+        .whatsapp-container:hover .whatsapp-callout { /* Mostra ao passar o mouse no container */
             opacity: 1;
             transform: translateY(0);
         }
         .dark .whatsapp-callout {
-            background-color: #128C7E; 
+            background-color: #128C7E; /* Cor do balão no tema escuro */
         }
-        .whatsapp-callout::after { 
+        .whatsapp-callout::after { /* Seta do balão */
             content: "";
             position: absolute;
-            top: 100%; 
+            top: 100%; /* Posiciona na base do balão */
             left: 50%;
             transform: translateX(-50%);
             border-width: 7px;
             border-style: solid;
-            border-color: #075E54 transparent transparent transparent; 
+            border-color: #075E54 transparent transparent transparent; /* Cor da seta */
         }
         .dark .whatsapp-callout::after {
-            border-color: #128C7E transparent transparent transparent;
+            border-color: #128C7E transparent transparent transparent; /* Cor da seta no tema escuro */
         }
 
         .whatsapp-fab {
-            background-color: #25D366;
+            background-color: #25D366; /* Verde oficial do WhatsApp */
             color: white;
             width: 60px;
             height: 60px;
@@ -322,31 +312,33 @@
             justify-content: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, background-color 0.3s ease;
+            text-decoration: none; /* Remove sublinhado do link */
         }
         .whatsapp-fab:hover {
-            background-color: #1DAE52;
-            transform: scale(1.1);
+            background-color: #1DAE52; /* Verde um pouco mais escuro no hover */
+            transform: scale(1.1); /* Efeito de zoom leve */
         }
-        .whatsapp-fab svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
+        .whatsapp-fab img { /* Estilo para a imagem do logo */
+            width: 32px;  /* Ajuste o tamanho do logo conforme necessário */
+            height: 32px; /* Ajuste o tamanho do logo conforme necessário */
+            display: block; /* Remove espaços extras abaixo da imagem, se houver */
         }
-       
+        /* ESTILOS DO BOTÃO WHATSAPP - FIM */
+        
         .header-actions button, .header-actions a {
             background: none; border: none; cursor: pointer; padding: 0.5rem;
             border-radius: 0.375rem; transition: background-color 0.2s ease-in-out;
-            color: #4b5563; 
+            color: #4b5563;
         }
         .dark .header-actions button, .dark .header-actions a { color: #d1d5db; }
         .header-actions button:hover, .header-actions a:hover { background-color: rgba(0,0,0,0.1); }
         .dark .header-actions button:hover, .dark .header-actions a:hover { background-color: rgba(255,255,255,0.1); }
         .header-actions svg { width: 24px; height: 24px; fill: currentColor; }
-        .dark .bg-gray-800 { background-color: #111827; } 
-        .dark .text-white { color: #f3f4f6; } 
+        .dark .bg-gray-800 { background-color: #111827; }
+        .dark .text-white { color: #f3f4f6; }
 
         .header-subtitle {
-            font-size: 0.875rem; color: #4b5563; text-align: center; 
+            font-size: 0.875rem; color: #4b5563; text-align: center;
         }
         @media (min-width: 640px) { .header-subtitle { text-align: left; } }
         .footer-text { font-size: 0.875rem; color: #6b7280; }
@@ -384,7 +376,7 @@
             <h2 class="text-lg sm:text-xl font-semibold mb-3 text-gray-700">Frase do Dia</h2>
             <blockquote id="quote-container">
                 <p id="quote-text" class="text-base sm:text-lg italic text-gray-600 mb-1">Carregando frase...</p>
-                <p id="quote-author" class="quote-author mb-2 hidden"></p> 
+                <p id="quote-author" class="quote-author mb-2 hidden"></p>
             </blockquote>
             <p id="quote-translation" class="text-sm text-gray-500 mb-3 hidden"></p>
             <button id="translate-button" class="btn btn-secondary text-sm">Mostrar Tradução</button>
@@ -424,8 +416,7 @@
             <div id="lesson-message" class="mb-4 p-3 rounded-md hidden text-sm sm:text-base"></div>
             
             <div class="lesson-controls-container">
-                <button id="previous-lesson-button" class="btn btn-secondary w-full sm:w-auto">Aula Anterior</button>
-                <button id="complete-lesson-button" class="btn btn-primary w-full sm:w-auto">Marcar como Concluída</button>
+                 <button id="complete-lesson-button" class="btn btn-primary w-full sm:w-auto">Marcar como Concluída</button>
             </div>
             <p id="course-completed-message" class="mt-4 text-green-600 font-semibold hidden">Parabéns! Você concluiu todas as aulas de aprendizado!</p>
         </main>
@@ -436,42 +427,27 @@
         <p class="footer-text mt-2">Seu aprendizado é nossa maior inspiração. Continue firme!</p>
     </footer>
 
-    <div id="lesson-modal" class="fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center p-2 sm:p-4 z-[100] hidden">
-        <div id="lesson-modal-content-wrapper" class="bg-white dark:bg-gray-800 p-3 sm:p-5 rounded-lg shadow-xl w-full h-full flex flex-col">
-            <div class="flex justify-between items-center mb-3 sm:mb-4">
-                <h3 id="modal-lesson-title" class="text-lg sm:text-xl font-bold text-indigo-700 dark:text-indigo-400 truncate pr-2"></h3>
-                <button id="close-lesson-modal" aria-label="Fechar aula" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
-            <div id="modal-lesson-content" class="flex-grow h-0 overflow-y-auto">
-                </div>
-        </div>
-    </div>
-
-
     <div class="whatsapp-container">
         <span class="whatsapp-callout">Tire suas dúvidas!</span>
-        <a href="https://wa.me/5574988592119" class="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
-            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.001 2.672c-7.36 0-13.328 5.968-13.328 13.328s5.968 13.328 13.328 13.328 13.328-5.968 13.328-13.328S23.361 2.672 16.001 2.672zm0 24.352c-6.08 0-11.024-4.944-11.024-11.024S9.921 4.976 16.001 4.976s11.024 4.944 11.024 11.024-4.944 11.024-11.024 11.024zm5.008-8.112c-.24-.12-.864-.432-1-.48s-.24-.072-.336.072c-.096.144-.384.48-.48.576s-.192.12-.336.048c-.144-.072-1.104-.408-2.096-1.272s-1.632-1.944-1.92-2.28c-.288-.336-.072-.504.048-.648s.144-.192.216-.288c.072-.096.096-.144.048-.24s-.336-.816-.456-.1.104c-.12-.024-.24-.024-.36-.024s-.24-.024-.36-.024c-.12 0-.312.048-.48.24s-.648.624-.648 1.512c0 .888.672 1.752.768 1.872s1.296 1.968 3.144 2.76c1.848.792 1.848.528 2.184.504s1.008-.408 1.152-.816c.144-.408.144-.744.096-.816s-.072-.12-.216-.24z" fill-rule="evenodd" clip-rule="evenodd" fill="white"/>
-            </svg>
-        </a>
+        <a href="https://wa.me/5574988592119?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20L%C3%ADngua%20Di%C3%A1ria." class="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
+            <img src="images/WhatsApp_Logo_PNG_Sem_Fundo_Transparente.png" alt="WhatsApp">
+            </a>
     </div>
-
     <script>
         // --- CONFIGURAÇÕES ---
         const IS_DEVELOPMENT_MODE = true; 
         const TOTAL_LEARNING_DAYS = 277; 
         const APP_STORAGE_KEY = 'linguaDiariaProgress';
         const THEME_STORAGE_KEY = 'linguaDiariaTheme';
-        const INTRO_VIDEO_ID = "dQw4w9WgXcQ"; 
+        const INTRO_VIDEO_ID = "dQw4w9WgXcQ"; // Mantenha seu ID de vídeo ou substitua
 
         // --- Array de Frases Motivacionais ---
         let dailyMotivationalQuotes = [];
+        // Exemplo: (Mantenha suas frases ou adicione mais)
         dailyMotivationalQuotes[1] = { day: 1, en: "The journey of a thousand miles begins with a single step.", pt: "A jornada de mil milhas começa com um único passo.", author: "Lao Tzu" };
         dailyMotivationalQuotes[2] = { day: 2, en: "Don't watch the clock; do what it does. Keep going.", pt: "Não observe o relógio; faça o que ele faz. Continue andando.", author: "Sam Levenson" };
-        for (let i = 3; i <= 277; i++) {
+        // Preenchimento automático para os demais dias (se necessário)
+        for (let i = 3; i <= TOTAL_LEARNING_DAYS; i++) {
             if (!dailyMotivationalQuotes[i]) { 
                 dailyMotivationalQuotes[i] = { 
                     day: i, 
@@ -485,9 +461,11 @@
         // --- Dados das Lições ---
         const lessonsData = [
             { id: 'intro', type: 'intro', title: "Bem-vindo à Língua Diária!", videoId: INTRO_VIDEO_ID },
+            // Mantenha a estrutura das suas lições
             { id: 1, type: 'interactive_page', title: "Dia 1: Os Fundamentos Essenciais", pageUrl: "aulas/dia1.html" }, 
             { id: 2, type: 'interactive_page', title: "Dia 2: Primeiras Conversas", pageUrl: "aulas/dia2.html" },
         ];
+        // Preenchimento automático para as demais lições (se necessário)
         for (let i = 3; i <= TOTAL_LEARNING_DAYS; i++) {
             lessonsData.push({
                 id: i,
@@ -507,10 +485,9 @@
         const progressTextEl = document.getElementById('progress-text');
         const lessonTitleEl = document.getElementById('lesson-title');
         const lessonContentEmbedEl = document.getElementById('lesson-content-embed');
-        const lessonMaterialsContainerEl = document.getElementById('lesson-materials-container'); // Não usado atualmente
-        const lessonMaterialsLinkEl = document.getElementById('lesson-materials-link'); // Não usado atualmente
+        const lessonMaterialsContainerEl = document.getElementById('lesson-materials-container'); 
+        const lessonMaterialsLinkEl = document.getElementById('lesson-materials-link'); 
         const completeLessonButton = document.getElementById('complete-lesson-button');
-        const previousLessonButton = document.getElementById('previous-lesson-button'); // Novo botão
         const lessonMessageEl = document.getElementById('lesson-message');
         const courseCompletedMessageEl = document.getElementById('course-completed-message');
         const currentYearEl = document.getElementById('currentYear');
@@ -520,13 +497,6 @@
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-        // Elementos do Modal da Lição
-        const lessonModalEl = document.getElementById('lesson-modal');
-        const modalLessonTitleEl = document.getElementById('modal-lesson-title');
-        const modalLessonContentEl = document.getElementById('modal-lesson-content');
-        const closeLessonModalButtonEl = document.getElementById('close-lesson-modal');
-
-
         // --- ESTADO DA APLICAÇÃO ---
         let currentQuoteObject = null;
         let translationVisible = false;
@@ -535,7 +505,6 @@
             currentLearningDay: 1, 
             lastActivityDate: null 
         };
-        let currentLessonData = null; // Para armazenar dados da lição atual para o modal
 
         // --- FUNÇÕES ---
         function applyTheme(theme) {
@@ -613,18 +582,21 @@
             if (savedProgress) {
                 try {
                     const parsedProgress = JSON.parse(savedProgress);
+                    // Validação mais robusta do progresso salvo
                     if (typeof parsedProgress.introCompleted === 'boolean' &&
                         typeof parsedProgress.currentLearningDay === 'number' &&
-                        parsedProgress.currentLearningDay >= 1 &&
+                        parsedProgress.currentLearningDay >= 1 && // Dia de aprendizado deve ser no mínimo 1
                         (parsedProgress.lastActivityDate === null || (typeof parsedProgress.lastActivityDate === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(parsedProgress.lastActivityDate)))
                        ) {
                         userProgress = parsedProgress;
                     } else {
                         console.warn("Progresso salvo inválido. Usando padrão.");
-                        saveProgress();
+                        saveProgress(); // Salva o progresso padrão se o salvo for inválido
                     }
                 } catch (error) {
                     console.error("Erro ao carregar progresso:", error);
+                    // Opcional: resetar para o padrão em caso de erro de parse
+                    // saveProgress(); 
                 }
             }
         }
@@ -636,26 +608,36 @@
         function updateProgressBar() {
             let daysEffectivelyCompleted = 0;
             if (userProgress.introCompleted) {
+                // Se a introdução foi completa, currentLearningDay representa o PRÓXIMO dia a ser feito.
+                // Então, os dias efetivamente completados são currentLearningDay - 1.
                 daysEffectivelyCompleted = Math.max(0, userProgress.currentLearningDay - 1);
             }
+            
+            // A porcentagem é baseada nos dias efetivamente completados em relação ao total.
+            // Se a introdução não foi completa, a porcentagem é 0.
             const percentage = userProgress.introCompleted ? Math.min(100, (daysEffectivelyCompleted / TOTAL_LEARNING_DAYS) * 100) : 0;
+            
             progressBarFillEl.style.width = `${percentage}%`;
             progressBarFillEl.textContent = `${Math.floor(percentage)}%`;
+
+            // Lógica para posicionar o ícone na barra de progresso
             let iconLeftPercentage;
-            if (percentage >= 97) {
-                iconLeftPercentage = `calc(100% - 28px)`; 
-            } else if (percentage < 3 && percentage > 0) {
+            if (percentage >= 97) { // Para evitar que o ícone saia da barra no final
+                iconLeftPercentage = `calc(100% - 28px)`; // 28px é a largura do ícone
+            } else if (percentage < 3 && percentage > 0) { // Para evitar que o ícone comece muito dentro da barra
                  iconLeftPercentage = `0%`;
-            } else {
+            }
+            else {
                 iconLeftPercentage = `${percentage}%`;
             }
             progressBarIconEl.style.left = iconLeftPercentage;
+
 
             if (!userProgress.introCompleted) {
                 progressTextEl.textContent = "Complete a introdução para iniciar sua jornada!";
             } else if (daysEffectivelyCompleted >= TOTAL_LEARNING_DAYS) {
                 progressTextEl.textContent = `Parabéns! Você concluiu todos os ${TOTAL_LEARNING_DAYS} dias de aprendizado!`;
-                progressBarIconEl.style.left = `calc(100% - 28px)`;
+                progressBarIconEl.style.left = `calc(100% - 28px)`; // Garante que o ícone fique no final
             } else {
                 progressTextEl.textContent = `Dia ${daysEffectivelyCompleted} de ${TOTAL_LEARNING_DAYS} concluídos. Próxima aula: Dia ${userProgress.currentLearningDay}.`;
             }
@@ -666,188 +648,167 @@
             return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
         }
 
-        // Função para abrir a lição no modal
-        function openLessonModal(lesson) {
-            if (!lesson || !lesson.pageUrl) {
-                console.error("Dados da lição ou URL da página ausentes para o modal.");
-                modalLessonContentEl.innerHTML = `<p class="p-4 text-center text-red-600 dark:text-red-400">Erro ao carregar conteúdo da aula.</p>`;
-                modalLessonTitleEl.textContent = "Erro";
-                lessonModalEl.classList.remove('hidden');
-                setTimeout(() => lessonModalEl.classList.remove('opacity-0'), 10); // Força reflow para transição
-                return;
-            }
-            currentLessonData = lesson; // Armazena dados da lição atual
-            modalLessonTitleEl.textContent = lesson.title;
-            const pageUrlWithCacheBuster = IS_DEVELOPMENT_MODE ? `${lesson.pageUrl}?t=${new Date().getTime()}` : lesson.pageUrl;
-            modalLessonContentEl.innerHTML = `<iframe src="${pageUrlWithCacheBuster}" title="${lesson.title}"></iframe>`;
-            lessonModalEl.classList.remove('hidden');
-            setTimeout(() => lessonModalEl.classList.remove('opacity-0'), 10); 
-        }
-
-        // Função para fechar o modal da lição
-        function closeLessonModal() {
-            lessonModalEl.classList.add('opacity-0');
-            setTimeout(() => {
-                lessonModalEl.classList.add('hidden');
-                modalLessonContentEl.innerHTML = ''; // Limpa o iframe para parar vídeos/áudios
-                currentLessonData = null; // Limpa dados da lição atual
-            }, 300); // Tempo da transição de opacidade
-        }
-
-
         function loadLessonContentUI(lesson) {
             lessonTitleEl.textContent = lesson.title;
-            lessonContentEmbedEl.innerHTML = ''; // Limpa conteúdo anterior (botão ou iframe de intro)
+            lessonContentEmbedEl.innerHTML = ''; // Limpa conteúdo anterior
 
-            // Reseta estilos do container para cada tipo de conteúdo
+            // Reseta estilos do container para garantir que se adaptem ao novo conteúdo
             lessonContentEmbedEl.style.paddingBottom = '';
             lessonContentEmbedEl.style.height = '';
-            // lessonContentEmbedEl.style.overflow = 'hidden'; // Removido para permitir que o botão seja clicável
 
             if (lesson.type === 'intro') {
-                // Estilo para vídeo de introdução (mantém aspect ratio 16:9)
-                lessonContentEmbedEl.style.paddingBottom = '56.25%'; 
-                lessonContentEmbedEl.style.height = '0'; 
+                // Para vídeos, usar aspect ratio para responsividade
+                lessonContentEmbedEl.style.paddingBottom = '56.25%'; // 16:9 aspect ratio
+                lessonContentEmbedEl.style.height = '0'; // Necessário para padding-bottom funcionar como aspect ratio
 
                 if (lesson.videoId && lesson.videoId !== "your_youtube_intro_video_id" && !lesson.videoId.startsWith("placeholder")) {
-                    lessonContentEmbedEl.innerHTML = `<iframe src="https://www.youtube.com/watch?v=1_eKyE_mHrg&pp=0gcJCdgAo7VqN5tD{lesson.videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="${lesson.title}"></iframe>`;
+                    lessonContentEmbedEl.innerHTML = `<iframe src="https://www.youtube.com/embed/${lesson.videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="${lesson.title}"></iframe>`;
                 } else {
+                    // Fallback se não houver videoId ou for placeholder
+                    lessonContentEmbedEl.style.paddingBottom = '0'; // Reset para imagem
+                    lessonContentEmbedEl.style.height = 'auto'; // Reset para imagem
                     lessonContentEmbedEl.innerHTML = `<img src="https://placehold.co/1600x900/e2e8f0/64748b?text=Configure+o+V%C3%ADdeo+de+Introdu%C3%A7%C3%A3o" alt="Vídeo de introdução" class="w-full h-full object-cover rounded-md">`;
                 }
             } else if (lesson.type === 'interactive_page') {
-                lessonContentEmbedEl.style.height = 'auto'; // Altura automática para acomodar o botão
+                // Para páginas interativas, mostrar um botão para abrir em nova aba
+                lessonContentEmbedEl.style.height = 'auto'; // Altura automática para o container do botão
                 if (lesson.pageUrl) {
-                    // Cria um botão para abrir a aula no modal
-                    const openButton = document.createElement('button');
-                    openButton.id = 'open-lesson-in-modal-button';
-                    openButton.className = 'btn btn-primary';
-                    openButton.textContent = `Abrir ${lesson.title}`;
-                    openButton.onclick = () => openLessonModal(lesson);
-                    lessonContentEmbedEl.appendChild(openButton);
+                    // Adiciona um timestamp para evitar cache em modo de desenvolvimento
+                    const pageUrlWithCacheBuster = IS_DEVELOPMENT_MODE ? `${lesson.pageUrl}?t=${new Date().getTime()}` : lesson.pageUrl;
+                    
+                    // Cria um link (botão) para abrir a aula em nova aba
+                    lessonContentEmbedEl.innerHTML = `
+                        <a href="${pageUrlWithCacheBuster}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-open-lesson-tab">
+                            Abrir ${lesson.title} em Nova Aba
+                        </a>
+                        <p class="lesson-open-instruction mt-2">
+                            Após concluir a aula na nova aba, feche-a e clique em 'Marcar como Concluída' aqui.
+                        </p>`;
                 } else {
                     lessonContentEmbedEl.innerHTML = `<p class="p-4 text-center">Conteúdo da página interativa não configurado (pageUrl ausente para o dia ${lesson.id}).</p>`;
                 }
             }
 
-            // Materiais adicionais não são mais usados, então o container fica escondido
+            // Materiais adicionais (se houver no futuro, por enquanto escondido)
+            // if (lesson.materialsUrl) {
+            //     lessonMaterialsLinkEl.href = lesson.materialsUrl;
+            //     lessonMaterialsLinkEl.textContent = `Materiais de Apoio para ${lesson.title}`;
+            //     lessonMaterialsContainerEl.classList.remove('hidden');
+            // } else {
             lessonMaterialsContainerEl.classList.add('hidden');
+            // }
         }
 
         function manageLessonDisplayAndControls() {
-            lessonMessageEl.classList.add('hidden');
+            lessonMessageEl.classList.add('hidden'); // Esconde mensagens anteriores
             lessonMessageEl.textContent = '';
-            courseCompletedMessageEl.classList.add('hidden');
-            completeLessonButton.classList.remove('hidden');
-            completeLessonButton.disabled = false; 
-            previousLessonButton.classList.remove('hidden'); // Mostra o botão de aula anterior
+            courseCompletedMessageEl.classList.add('hidden'); // Esconde mensagem de curso completo
+            completeLessonButton.classList.remove('hidden'); // Mostra o botão de completar por padrão
+            completeLessonButton.disabled = false; // Habilita o botão por padrão
+            // previousLessonButton.classList.add('hidden'); // Garante que o botão anterior está escondido
 
             let currentLessonToShow;
-            let lessonIdentifier; 
+            let lessonIdentifier; // Para logs e mensagens
 
             if (!userProgress.introCompleted) {
                 currentLessonToShow = lessonsData.find(l => l.id === 'intro');
                 lessonIdentifier = 'intro';
                 completeLessonButton.textContent = "Concluir Introdução";
-                previousLessonButton.disabled = true; // Desabilita "Aula Anterior" na introdução
             } else {
+                // Se a introdução foi concluída, verifica se o curso todo foi concluído
                 if (userProgress.currentLearningDay > TOTAL_LEARNING_DAYS) {
                     lessonTitleEl.textContent = "Jornada Concluída!";
                     lessonContentEmbedEl.innerHTML = '<div class="p-4 text-center"><p class="text-lg text-green-600 dark:text-green-400">Fantástico! Você dominou todos os dias de aprendizado!</p><p class="mt-2 text-gray-700 dark:text-gray-300">Continue praticando para solidificar seu conhecimento.</p></div>';
-                    lessonContentEmbedEl.style.paddingBottom = '0'; 
-                    lessonContentEmbedEl.style.height = 'auto'; 
+                    lessonContentEmbedEl.style.paddingBottom = '0'; // Ajuste para conteúdo estático
+                    lessonContentEmbedEl.style.height = 'auto'; // Ajuste para conteúdo estático
                     completeLessonButton.classList.add('hidden');
-                    previousLessonButton.classList.add('hidden'); // Esconde "Aula Anterior" se o curso estiver completo
                     courseCompletedMessageEl.classList.remove('hidden');
-                    updateProgressBar();
-                    return;
+                    updateProgressBar(); // Atualiza a barra para mostrar 100% e mensagem final
+                    return; // Sai da função pois não há mais lições
                 }
+                // Carrega a lição do dia atual
                 currentLessonToShow = lessonsData.find(l => l.id === userProgress.currentLearningDay && l.type === 'interactive_page');
                 lessonIdentifier = userProgress.currentLearningDay;
                 completeLessonButton.textContent = `Marcar Dia ${userProgress.currentLearningDay} como Concluído`;
-                // Habilita/desabilita "Aula Anterior"
-                previousLessonButton.disabled = userProgress.currentLearningDay <= 1;
             }
 
             if (!currentLessonToShow) {
+                // Fallback se a lição não for encontrada (erro nos dados ou lógica)
                 lessonTitleEl.textContent = "Erro de Aula";
                 lessonContentEmbedEl.innerHTML = `<p class='p-4 text-center text-red-600 dark:text-red-400'>Oops! Aula para '${lessonIdentifier}' não encontrada. Por favor, verifique.</p>`;
-                lessonContentEmbedEl.style.paddingBottom = '0';
+                lessonContentEmbedEl.style.paddingBottom = '0'; 
                 lessonContentEmbedEl.style.height = 'auto'; 
                 completeLessonButton.classList.add('hidden');
-                previousLessonButton.disabled = true;
                 return;
             }
 
             loadLessonContentUI(currentLessonToShow);
 
+            // Lógica de "uma atividade por dia"
             const todayStr = getTodayDateString();
             if (userProgress.lastActivityDate === todayStr && !IS_DEVELOPMENT_MODE) {
                 let message = "";
+                // Se a introdução foi a última atividade de hoje E já está completa
                 if (lessonIdentifier === 'intro' && userProgress.introCompleted) { 
+                    // Isso não deveria acontecer se a lógica de avanço estiver correta, mas é um failsafe.
+                    // Se a intro está completa, deveríamos estar no Dia 1.
                      message = `Introdução concluída hoje! Volte amanhã para iniciar o Dia 1.`;
                 } 
+                // Se a atividade de hoje (que seria o dia anterior ao currentLearningDay) já foi feita
                 else if (lessonIdentifier !== 'intro' && userProgress.currentLearningDay > 1) { 
-                    const previousDayCompleted = userProgress.currentLearningDay -1; // Dia que foi completado
+                    const previousDayCompleted = userProgress.currentLearningDay -1; // O dia que foi completado hoje
                     message = `Você já completou a atividade de hoje (Dia ${previousDayCompleted}). Volte amanhã para o Dia ${userProgress.currentLearningDay}!`;
                 }
+
                 if (message) {
                     lessonMessageEl.textContent = message;
                     lessonMessageEl.className = 'mb-4 p-3 bg-blue-100 text-blue-700 border border-blue-300 rounded-md text-sm sm:text-base dark:bg-blue-800 dark:text-blue-200 dark:border-blue-600';
                     lessonMessageEl.classList.remove('hidden');
                     completeLessonButton.disabled = true;
                     completeLessonButton.textContent = "Volte Amanhã";
-                    // Não desabilitar o previousLessonButton aqui, pois o usuário pode querer rever
                 }
             } else if (IS_DEVELOPMENT_MODE && userProgress.lastActivityDate === todayStr) {
+                // Mensagem para modo de desenvolvimento, permitindo continuar
                 lessonMessageEl.textContent = `(Modo de Teste) Atividade diária já registrada para ${todayStr}, mas você pode continuar.`;
                 lessonMessageEl.className = 'mb-4 p-3 bg-purple-100 text-purple-700 border border-purple-300 rounded-md text-sm sm:text-base dark:bg-purple-800 dark:text-purple-200 dark:border-purple-600';
                 lessonMessageEl.classList.remove('hidden');
             }
         }
         
-        // Função para lidar com o clique no botão "Aula Anterior"
-        function handlePreviousLesson() {
-            if (!userProgress.introCompleted || userProgress.currentLearningDay <= 1) {
-                // Não faz nada se estiver na introdução ou no primeiro dia após a introdução
-                return;
-            }
-            if (userProgress.currentLearningDay > 1) {
-                userProgress.currentLearningDay -= 1;
-                // Não é necessário mudar lastActivityDate ao voltar, apenas ao completar
-                saveProgress();
-                displayDailyQuote(); // A citação deve ser do dia atual, não do anterior
-                updateProgressBar();
-                manageLessonDisplayAndControls();
-            }
-        }
-
+        // Função handlePreviousLesson foi removida pois não há botão "anterior"
 
         function handleCompleteLesson() {
             const todayStr = getTodayDateString();
-            lessonMessageEl.className = 'mb-4 p-3 border rounded-md text-sm sm:text-base hidden'; 
+            lessonMessageEl.className = 'mb-4 p-3 border rounded-md text-sm sm:text-base hidden'; // Reseta e esconde a mensagem
+
             if (userProgress.lastActivityDate === todayStr && !IS_DEVELOPMENT_MODE) {
                 lessonMessageEl.textContent = `Você só pode completar uma atividade por dia. Volte amanhã!`;
                 lessonMessageEl.classList.add('bg-yellow-100', 'text-yellow-700', 'border-yellow-300', 'dark:bg-yellow-700', 'dark:text-yellow-200', 'dark:border-yellow-500');
                 lessonMessageEl.classList.remove('hidden');
-                completeLessonButton.disabled = true;
+                completeLessonButton.disabled = true; // Mantém desabilitado
                 return;
             }
+
             let messageAfterCompletion = "";
+
             if (!userProgress.introCompleted) {
                 userProgress.introCompleted = true;
+                // currentLearningDay permanece 1, pois é a próxima lição após a intro.
                 messageAfterCompletion = `Introdução concluída!`;
                 if (IS_DEVELOPMENT_MODE) {
                     messageAfterCompletion += ` (Modo de Teste) Próxima aula (Dia 1) já está disponível.`;
                 } else {
-                    messageAfterCompletion += ` Você está pronto para começar o Dia 1.`;
+                     messageAfterCompletion += ` Você está pronto para começar o Dia 1.`;
                 }
             } else { 
+                // Se a introdução já está completa, estamos completando um dia de aprendizado regular.
                 if (userProgress.currentLearningDay <= TOTAL_LEARNING_DAYS) {
                     const dayJustCompleted = userProgress.currentLearningDay;
-                    userProgress.currentLearningDay += 1; 
-                    if (dayJustCompleted >= TOTAL_LEARNING_DAYS) { 
+                    userProgress.currentLearningDay += 1; // Avança para o próximo dia de aprendizado
+
+                    if (dayJustCompleted >= TOTAL_LEARNING_DAYS) { // Acabou de completar o último dia
                         messageAfterCompletion = `Parabéns! Dia ${dayJustCompleted} concluído. Você finalizou todas as aulas de aprendizado!`;
-                    } else { 
+                    } else { // Ainda há mais dias
                         messageAfterCompletion = `Dia ${dayJustCompleted} concluído!`;
                         if (IS_DEVELOPMENT_MODE) {
                             messageAfterCompletion += ` (Modo de Teste) Próxima aula (Dia ${userProgress.currentLearningDay}) já está disponível.`;
@@ -856,17 +817,21 @@
                         }
                     }
                 }
+                // Se currentLearningDay já for > TOTAL_LEARNING_DAYS, essa lógica não deveria ser alcançada
+                // pois o botão "completar" estaria escondido.
             }
+
             if (messageAfterCompletion) {
                 lessonMessageEl.textContent = messageAfterCompletion;
                 lessonMessageEl.classList.add('bg-green-100', 'text-green-700', 'border-green-300', 'dark:bg-green-800', 'dark:text-green-200', 'dark:border-green-600');
                 lessonMessageEl.classList.remove('hidden');
             }
-            userProgress.lastActivityDate = todayStr; 
+
+            userProgress.lastActivityDate = todayStr; // Marca a atividade de hoje como feita
             saveProgress();
-            displayDailyQuote(); 
-            updateProgressBar(); 
-            manageLessonDisplayAndControls(); 
+            displayDailyQuote(); // Atualiza a frase do dia (pode depender do currentLearningDay)
+            updateProgressBar(); // Atualiza a barra de progresso
+            manageLessonDisplayAndControls(); // Recarrega a interface da lição (para a próxima ou mensagem de concluído)
         }
 
         function exportProgress() {
@@ -880,6 +845,7 @@
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+
             lessonMessageEl.textContent = "Seu progresso foi exportado como 'lingua_diaria_progresso.json'. Guarde este arquivo!";
             lessonMessageEl.className = 'mb-4 p-3 bg-green-100 text-green-700 border border-green-300 rounded-md text-sm sm:text-base dark:bg-green-800 dark:text-green-200 dark:border-green-600';
             lessonMessageEl.classList.remove('hidden');
@@ -887,16 +853,18 @@
 
         function importProgress(event) {
             const file = event.target.files[0];
-            lessonMessageEl.className = 'mb-4 p-3 border rounded-md text-sm sm:text-base hidden';
+            lessonMessageEl.className = 'mb-4 p-3 border rounded-md text-sm sm:text-base hidden'; // Limpa e esconde mensagens anteriores
             if (!file) return;
+
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
                     const importedProgress = JSON.parse(e.target.result);
+                    // Validação mais robusta do progresso importado
                     if (typeof importedProgress.introCompleted === 'boolean' &&
                         typeof importedProgress.currentLearningDay === 'number' &&
-                        importedProgress.currentLearningDay >= 1 &&
-                        importedProgress.currentLearningDay <= (TOTAL_LEARNING_DAYS + 1) && 
+                        importedProgress.currentLearningDay >= 1 && // Dia de aprendizado deve ser no mínimo 1
+                        importedProgress.currentLearningDay <= (TOTAL_LEARNING_DAYS + 1) && // Não pode ser maior que o total + 1 (estado de concluído)
                         (importedProgress.lastActivityDate === null || (typeof importedProgress.lastActivityDate === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(importedProgress.lastActivityDate)))
                        ) {
                         userProgress = importedProgress;
@@ -916,7 +884,7 @@
                     lessonMessageEl.classList.add('bg-red-100', 'text-red-700', 'border-red-300', 'dark:bg-red-800', 'dark:text-red-200', 'dark:border-red-600');
                 } finally {
                     lessonMessageEl.classList.remove('hidden');
-                    importProgressInput.value = ""; 
+                    importProgressInput.value = ""; // Limpa o input de arquivo para permitir reimportar o mesmo arquivo se necessário
                 }
             };
             reader.readAsText(file);
@@ -936,18 +904,9 @@
             manageLessonDisplayAndControls();
 
             completeLessonButton.addEventListener('click', handleCompleteLesson);
-            previousLessonButton.addEventListener('click', handlePreviousLesson); // Evento para o novo botão
             exportProgressButton.addEventListener('click', exportProgress);
             importProgressInput.addEventListener('change', importProgress);
-            closeLessonModalButtonEl.addEventListener('click', closeLessonModal); // Evento para fechar o modal
-
-            // Fechar modal com tecla Esc
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && !lessonModalEl.classList.contains('hidden')) {
-                    closeLessonModal();
-                }
-            });
-
+            // Modal e seus eventos foram removidos, então não há listeners para adicionar aqui
 
             if (IS_DEVELOPMENT_MODE) {
                 console.log("Língua Diária rodando em MODO DE DESENVOLVIMENTO.");
