@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dia 15: Descrevendo Pessoas</title>
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos básicos + Dark Mode (consistente com os anteriores) */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            padding: 1.5rem; 
+            background-color: #f9fafb; 
+            color: #1f2937; 
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .dark body {
+             background-color: #374151;
+             color: #d1d5db;
+        }
+        h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; color: #4f46e5; }
+        .dark h1 { color: #a5b4fc; }
+        h2 { font-size: 1.3rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: #111827; border-bottom: 2px solid #e0e7ff;}
+        .dark h2 { color: #f3f4f6; border-bottom-color: #4338ca;}
+        p { margin-bottom: 1rem; line-height: 1.6; }
+        
+        /* Botões de Navegação da Aula */
+        .lesson-nav-button {
+            background-color: #6366f1; /* indigo-500 */
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            border: none;
+            margin: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .lesson-nav-button:hover {
+            background-color: #4f46e5; /* indigo-600 */
+        }
+         .lesson-nav-button:active {
+            transform: scale(0.98);
+        }
+        .dark .lesson-nav-button {
+            background-color: #818cf8; /* indigo-400 */
+            color: #1f2937;
+        }
+        .dark .lesson-nav-button:hover {
+            background-color: #a5b4fc; /* indigo-300 */
+        }
+
+        /* Seções de Conteúdo */
+        .content-section {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .dark .content-section {
+            background-color: #4b5563; /* gray-600 */
+            border-color: #6b7280; /* gray-500 */
+        }
+
+        /* Estilos para Imagens */
+        .image-card {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .image-card img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 0.375rem;
+            margin: 0 auto 0.5rem auto;
+            border: 1px solid #ddd;
+        }
+        .dark .image-card img {
+            border-color: #555;
+        }
+        .image-card p {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Estilos para Vídeo */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #333;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Estilos para Exercícios */
+        .exercise-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #d1d5db;
+        }
+        .dark .exercise-item {
+            border-bottom-color: #4b5563;
+        }
+        .exercise-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .answer-button {
+            background-color: #e0e7ff;
+            color: #3730a3;
+            padding: 0.3rem 0.8rem;
+            border-radius: 0.375rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 0.5rem;
+            border: none;
+        }
+        .answer-button:hover {
+            background-color: #c7d2fe;
+        }
+        .dark .answer-button {
+            background-color: #4338ca;
+            color: #e0e7ff;
+        }
+        .dark .answer-button:hover {
+            background-color: #4f46e5;
+        }
+        .answer {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background-color: #f3f4f6;
+            border-radius: 0.25rem;
+            font-style: italic;
+            color: #1e8a4f; /* Verde para resposta correta */
+            font-weight: 500;
+        }
+        .dark .answer {
+            background-color: #374151;
+            color: #6ee7b7; /* Verde claro */
+        }
+    </style>
+</head>
+<body>
+    <h1>Dia 15: Descrevendo Pessoas</h1>
+    <p>Hoje vamos aprender vocabulário e frases para descrever a aparência física e personalidade das pessoas em inglês. Escolha como você quer começar:</p>
+
+    <div class="flex flex-wrap justify-center mb-6">
+        <button class="lesson-nav-button" onclick="showSection('images')">Estudar com Imagens</button>
+        <button class="lesson-nav-button" onclick="showSection('video')">Estudar com Vídeo</button>
+        <button class="lesson-nav-button" onclick="showSection('exercises')">Praticar Exercícios</button>
+    </div>
+
+    <div id="images-section" class="content-section hidden">
+        <h2>Estudar com Imagens</h2>
+        <p>Observe as imagens e o vocabulário relacionado:</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div class="image-card">
+                <img src="https://placehold.co/150x200/a5b4fc/ffffff?text=Tall" alt="Pessoa alta">
+                <p>Tall (Alto/a)</p>
+            </div>
+            <div class="image-card">
+                <img src="https://placehold.co/150x150/a5b4fc/ffffff?text=Short" alt="Pessoa baixa">
+                <p>Short (Baixo/a)</p>
+            </div>
+            <div class="image-card">
+                <img src="https://placehold.co/150x150/d69c6c/ffffff?text=Brown+Hair" alt="Cabelo castanho">
+                <p>Brown Hair (Cabelo Castanho)</p>
+            </div>
+             <div class="image-card">
+                <img src="https://placehold.co/150x150/fef08a/333333?text=Blonde+Hair" alt="Cabelo loiro">
+                <p>Blonde Hair (Cabelo Loiro)</p>
+            </div>
+             <div class="image-card">
+                <img src="https://placehold.co/150x150/86efac/333333?text=Green+Eyes" alt="Olhos verdes">
+                <p>Green Eyes (Olhos Verdes)</p>
+            </div>
+             <div class="image-card">
+                <img src="https://placehold.co/150x150/93c5fd/ffffff?text=Blue+Eyes" alt="Olhos azuis">
+                <p>Blue Eyes (Olhos Azuis)</p>
+            </div>
+        </div>
+        <p class="mt-4"><strong>Exemplo de frase:</strong> "He is tall and has brown hair." (Ele é alto e tem cabelo castanho.)</p>
+    </div>
+
+    <div id="video-section" class="content-section hidden">
+        <h2>Estudar com Vídeo</h2>
+        <p>Assista a este vídeo para ver exemplos de como descrever pessoas em conversas reais:</p>
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/VIDEO_ID" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen 
+                title="Descrevendo Pessoas em Inglês">
+            </iframe>
+        </div>
+        <p>Preste atenção nas palavras usadas para descrever altura, cabelo, olhos e personalidade.</p>
+    </div>
+
+    <div id="exercises-section" class="content-section hidden">
+        <h2>Praticar Exercícios</h2>
+        <p>Complete as frases com a palavra correta ou revele a tradução.</p>
+
+        <div class="exercise-item">
+            <p>My brother is very ______ (alto). He plays basketball.</p>
+            <button class="answer-button" onclick="revealAnswer(this)">Mostrar Resposta</button>
+            <p class="answer hidden">tall</p>
+        </div>
+
+        <div class="exercise-item">
+            <p>She has beautiful long ______ (loiro) hair.</p>
+            <button class="answer-button" onclick="revealAnswer(this)">Mostrar Resposta</button>
+            <p class="answer hidden">blonde</p>
+        </div>
+
+         <div class="exercise-item">
+            <p>Traduza: "My teacher is friendly and patient."</p>
+            <button class="answer-button" onclick="revealAnswer(this)">Mostrar Tradução</button>
+            <p class="answer hidden">"Meu professor / Minha professora é amigável e paciente."</p>
+        </div>
+
+        <div class="exercise-item">
+            <p>He wears ______ (óculos) because he can't see well.</p>
+            <button class="answer-button" onclick="revealAnswer(this)">Mostrar Resposta</button>
+            <p class="answer hidden">glasses</p>
+        </div>
+    </div>
+
+    <script>
+        // Função para mostrar a seção clicada e esconder as outras
+        function showSection(sectionId) {
+            // Esconde todas as seções de conteúdo
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            // Mostra a seção clicada
+            const activeSection = document.getElementById(sectionId + '-section');
+            if (activeSection) {
+                activeSection.classList.remove('hidden');
+            }
+        }
+
+        // Função para revelar a resposta do exercício
+        function revealAnswer(buttonElement) {
+            const exerciseItem = buttonElement.closest('.exercise-item');
+            if (exerciseItem) {
+                const answerElement = exerciseItem.querySelector('.answer');
+                if (answerElement) {
+                    answerElement.classList.remove('hidden');
+                    buttonElement.style.display = 'none'; // Esconde o botão depois de clicado
+                }
+            }
+        }
+
+         // Opcional: Sincronizar tema se possível (ver comentário no exemplo da aula 10)
+         document.addEventListener('DOMContentLoaded', () => {
+            // Tenta detectar o tema da página pai (pode não funcionar por segurança)
+            try {
+                if (window.parent && window.parent.document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.add('dark');
+                }
+            } catch (e) {
+                console.warn("Não foi possível acessar o tema da página pai.", e);
+            }
+         });
+
+    </script>
+
+</body>
+</html>
